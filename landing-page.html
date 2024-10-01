@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biograf Filmoversigt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Sort baggrund */
+            color: #fff; /* Hvid tekstfarve */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+        h1 {
+            text-align: center;
+            color: #ffcc00; /* Gylden farve som biograf stemning */
+        }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 film pr. række */
+            gap: 20px; /* Afstand mellem filmene */
+            margin-top: 20px;
+        }
+        .movie-item {
+            text-align: center;
+        }
+        .poster img {
+            width: 100%; /* Plakaten fylder hele pladsen */
+            max-width: 200px; /* Sæt en maks bredde for plakaterne */
+            height: auto; /* Bevar billedets proportioner */
+        }
+        .title {
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #ffcc00; /* Gylden farve til titlen */
+        }
+        .poster img {
+            width: 100%; /* Standard størrelse */
+            max-width: 200px; /* Maks bredde */
+            height: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Gør overgangen jævn */
+        }
+
+        .poster img:hover {
+            transform: scale(1.05); /* Forstør en smule */
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5); /* Tilføj lidt skygge for fremhævning */
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Biograf Filmoversigt</h1>
+    <div class="movie-grid" id="moviesGrid">
+    </div>
+</div>
+
+<script>
+    fetch('http://localhost:8080/getMovies')
+        .then(response => response.json())
+        .then(data => {
+            const moviesGrid = document.getElementById('moviesGrid');
+            data.forEach(movie => {
+                // Opret en ny div for hver film
+                const movieItem = document.createElement('div');
+                movieItem.classList.add('movie-item');
+
+                // Indsæt plakat og titel
+                movieItem.innerHTML = `
+                    <div class="poster">
+                   <a href= "https://www.imdb.com/title/${movie.imdbID}" >
+                     <img src="${movie.poster}" alt="${movie.title} Plakat">
+                        </a>
+                    </div>
+                    <div class="title">${movie.title}</div>
+                `;
+
+                // Tilføj filmen til grid
+                moviesGrid.appendChild(movieItem);
+            });
+        })
+        .catch(error => console.error('Fejl ved hentning af film:', error));
+
+
+</script>
+
+</body>
+</html>
