@@ -19,7 +19,7 @@ document.getElementById("login-form").addEventListener("submit", async function 
 
         if (response.ok) {
             alert("Du er nu logget ind som admin");
-            window.location.href //HER SKAL VORES HTML SIDE SOM MAN SKAL VIDERE TIL VÆRE
+            window.location.href = 'admin_dashboard.html';//HER SKAL VORES HTML SIDE SOM MAN SKAL VIDERE TIL VÆRE
         } else {
             document.getElementById("error-message").style.display = "block";
         }
