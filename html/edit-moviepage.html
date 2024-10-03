@@ -1,10 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Film Redigering</title>
+    <style>
+        /* Enkel styling for modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #888;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .modal-header, .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-footer {
+            margin-top: 20px;
+        }
+
+        .modal-close {
+            cursor: pointer;
+            color: red;
+        }
+
+        .modal input, .modal textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+        }
+
+        .modal-open {
+            display: block;
+        }
+    </style>
 </head>
 <body>
+<label for="searched-movie">Hvilken film vil du søge efter?</label>
+<input type="text" id="searched-movie" required>
+<button id="search-button" type="submit">Søg</button>
 
+<!-- Modal til redigering af film -->
+<div id="edit-movie-modal" class="modal">
+    <div class="modal-header">
+        <h2>Rediger Film</h2>
+        <span class="modal-close" id="close-modal">&times;</span>
+    </div>
+    <div class="modal-body">
+        <form id="movie-form">
+            <label for="movie-title">Titel:</label>
+            <input type="text" id="movie-title" name="title" required>
+
+            <label for="movie-description">Beskrivelse:</label>
+            <textarea id="movie-description" name="description" required></textarea>
+
+            <label for="movie-release-year">Udgivelsesår:</label>
+            <input type="number" id="movie-release-year" name="releaseYear" required>
+
+            <label for="movie-genre">Genre:</label>
+            <input type="text" id="movie-genre" name="genre" required>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button id="save-button">Gem</button>
+        <button id="cancel-button">Annuller</button>
+    </div>
+</div>
+
+<script src="../js/edit-moviepage.js"></script>
 </body>
 </html>
