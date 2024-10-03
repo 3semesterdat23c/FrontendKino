@@ -1,38 +1,88 @@
-document.getElementById("").addEventListener("click", function() {
-    document.getElementById("create-admin-modal").style.display = "block";
-});
+// Modal elements
+const modal = document.getElementById("edit-movie-modal");
+const closeModalButton = document.getElementById("close-modal");
+const cancelButton = document.getElementById("cancel-button");
+const saveButton = document.getElementById("save-button");
 
-document.getElementById("create-admin-form").addEventListener("submit", async function(event) {
-    event.preventDefault();
+// Input elements
+const searchInput = document.getElementById("searched-movie");
+const searchButton = document.getElementById("search-button");
+const titleInput = document.getElementById("movie-title");
+const descriptionInput = document.getElementById("movie-description");
+const releaseYearInput = document.getElementById("movie-release-year");
+const genreInput = document.getElementById("movie-genre");
 
-    const username = document.getElementById("new-username").value;
-    const password = document.getElementById("new-password").value;
-    const fullName = document.getElementById("new-fullname").value;
+let currentMovieId = null; // To keep track of the current movie
+const backendUrl = 'http://localhost:8080'; // Replace with your backend's URL and port
 
-    try {
-        const response = await fetch("http://localhost:8080/admin/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password,
-                fullName: fullName
+searchButton.addEventListener("click", function () {
+    const movieTitle = searchInput.value.trim();
+
+    if (movieTitle) {
+        fetch(`${backendUrl}/movies/search?title=${encodeURIComponent(movieTitle)}`)
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error("Ingen film fundet.");
+                    } else {
+                        throw new Error("Fejl ved hentning af film.");
+                    }
+                }
+                return response.json();
             })
-        });
+            .then(movies => {
+                if (movies.length > 0) {
+                    // For simplicity, take the first movie that matches
+                    const movie = movies[0];
+                    currentMovieId = movie.movieId;
 
-        if (response.ok) {
-            alert("Admin registered successfully");
-            // Optionally, reset the form or close the modal
-            document.getElementById("create-admin-form").reset();
-            document.getElementById("create-admin-modal").style.display = "none";
-        } else {
-            const errorText = await response.text();
-            alert("Error: " + errorText);
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred while registering the admin.");
+                    // Fill the modal with movie data
+                    titleInput.value = movie.title;
+                    descriptionInput.value = movie.description;
+                    releaseYearInput.value = movie.year;
+                    genreInput.value = movie.actors;
+
+                    // Open the modal
+                    modal.classList.add("modal-open");
+                } else {
+                    alert("Ingen film fundet.");
+                }
+            })
+            .catch(error => alert(error.message));
+    } else {
+        alert("Indtast venligst en film titel.");
     }
 });
+saveButton.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const updatedMovie = {
+        movieId: currentMovieId, // Include the movieId in the payload
+        title: titleInput.value.trim(),
+        description: descriptionInput.value.trim(),
+        releaseYear: parseInt(releaseYearInput.value, 10),
+        genre: genreInput.value.trim()
+    };
+
+    if (currentMovieId) {
+        fetch(`/movies/${currentMovieId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedMovie),
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("Filmen er blevet opdateret!");
+                    modal.classList.remove("modal-open");
+                } else {
+                    alert("Der opstod en fejl under opdateringen.");
+                }
+            })
+            .catch(error => console.error("Fejl ved opdatering af film:", error));
+    } else {
+        alert("Ingen film valgt til opdatering.");
+    }
+});
+
