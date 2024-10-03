@@ -4,94 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biograf Filmoversigt</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000; /* Sort baggrund */
-            color: #fff; /* Hvid tekstfarve */
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 90%;
-            margin: 20px auto;
-        }
-        h1 {
-            text-align: center;
-            color: #ffcc00; /* Gylden farve som biograf stemning */
-        }
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr); /* 5 film pr. række */
-            gap: 20px; /* Afstand mellem filmene */
-            margin-top: 20px;
-        }
-        .movie-item {
-            text-align: center;
-        }
-        .poster img {
-            width: 100%; /* Plakaten fylder hele pladsen */
-            max-width: 200px; /* Sæt en maks bredde for plakaterne */
-            height: auto; /* Bevar billedets proportioner */
-        }
-        .title {
-            margin-top: 10px;
-            font-size: 1.1em;
-            color: #ffcc00; /* Gylden farve til titlen */
-        }
-        .poster img {
-            width: 100%; /* Standard størrelse */
-            max-width: 200px; /* Maks bredde */
-            height: auto;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Gør overgangen jævn */
-        }
+    <link rel="stylesheet" href="Landingpage.css">
 
-        .poster img:hover {
-            transform: scale(1.05); /* Forstør en smule */
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5); /* Tilføj lidt skygge for fremhævning */
-        }
-
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
 <div class="container">
     <h1>Biograf Filmoversigt</h1>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#movie-modal">
+        Add Movie
+    </button>
     <div class="movie-grid" id="moviesGrid">
     </div>
 </div>
 
-<script>
-    fetch('http://localhost:8080/getMovies')
-        .then(response => response.json())
-        .then(data => {
-            const moviesGrid = document.getElementById('moviesGrid');
-            data.forEach(movie => {
-                // Opret en ny div for hver film
-                const movieItem = document.createElement('div');
-                const movie_id = movie.id;
-                movieItem.classList.add('movie-item');
-
-                // Indsæt plakat og titel
-                movieItem.innerHTML = `
-                    <div class="poster">
-                   <a href= "http://localhost:8080/movie/${movie.movieId}" >
-                     <img src="${movie.poster}" alt="${movie.title} Plakat">
-                        </a>
+<div class="modal fade" id="movie-modal" tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Add Movie</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="movie-form">
+                    <div class="mb-3">
+                        <label for="input-title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="input-title" name="title" required>
                     </div>
-                    <div class="title">${movie.title}</div>
-
-                `;
-
-
-                // Tilføj filmen til grid
-                moviesGrid.appendChild(movieItem);
-            });
-        })
-        .catch(error => console.error('Fejl ved hentning af film:', error));
-
-
-</script>
+                    <div class="mb-3">
+                        <label for="input-year" class="form-label">Year</label>
+                        <input type="text" class="form-control" id="input-year" name="year">
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-released" class="form-label">Released</label>
+                        <input type="text" class="form-control" id="input-released" name="released">
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-runtime" class="form-label">Runtime</label>
+                        <input type="text" class="form-control" id="input-runtime" name="runtime">
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-genre" class="form-label">Genre</label>
+                        <input type="text" class="form-control" id="input-genre" name="genre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-director" class="form-label">Director</label>
+                        <input type="text" class="form-control" id="input-director" name="director">
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-actors" class="form-label">Actors</label>
+                        <input type="text" class="form-control" id="input-actors" name="actors">
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-poster" class="form-label">Poster URL</label>
+                        <input type="text" class="form-control" id="input-poster" name="poster">
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-imdbRating" class="form-label">IMDb Rating</label>
+                        <input type="text" class="form-control" id="input-imdbRating" name="imdbRating">
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-imdbID" class="form-label">IMDb ID</label>
+                        <input type="text" class="form-control" id="input-imdbID" name="imdbID">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="btn-save-movie" type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="Landigpage.js" type="module"></script>
 
 </body>
 </html>
