@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<h2>Welcome to the Admin Dashboard</h2>
+<button id="create-admin-btn">Create New Admin</button>
+
+<!-- Modal or Form for Creating New Admin -->
+<div id="create-admin-modal" style="display: none;">
+    <form id="create-admin-form">
+        <label for="new-username">Username:</label>
+        <input type="text" id="new-username" required>
+        <label for="new-password">Password:</label>
+        <input type="password" id="new-password" required>
+        <label for="new-fullname">Full Name:</label>
+        <input type="text" id="new-fullname" required>
+        <button type="submit">Register Admin</button>
+    </form>
+</div>
+
+<script src="dashboard.js" type="module"></script>
+</body>
+</html>
