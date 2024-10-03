@@ -69,17 +69,20 @@
             data.forEach(movie => {
                 // Opret en ny div for hver film
                 const movieItem = document.createElement('div');
+                const movie_id = movie.id;
                 movieItem.classList.add('movie-item');
 
                 // Indsæt plakat og titel
                 movieItem.innerHTML = `
                     <div class="poster">
-                   <a href= "https://www.imdb.com/title/${movie.imdbID}" >
+                   <a href= "http://localhost:8080/movie/${movie.movieId}" >
                      <img src="${movie.poster}" alt="${movie.title} Plakat">
                         </a>
                     </div>
                     <div class="title">${movie.title}</div>
+
                 `;
+
 
                 // Tilføj filmen til grid
                 moviesGrid.appendChild(movieItem);

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <style>
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+
+        .movie-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .poster img {
+            max-width: 350px;
+            width: 100%;
+            height: auto;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .poster img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
+        }
+
+        .details {
+            max-width: 700px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .details h2 {
+            font-size: 2.5em;
+            color: #ffcc00;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .details p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin: 12px 0;
+            color: #b3b3b3;
+        }
+
+        .highlight {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .movie-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .poster img {
+                max-width: 250px;
+            }
+
+            .details h2 {
+                font-size: 2em;
+            }
+
+            .details p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Movie Details</h1>
+    <div class="movie-content">
+        <div class="poster" id="moviePoster">
+        </div>
+        <div class="details">
+            <h2 id="movieTitle">Movie Title</h2>
+            <p id="movieYear">Movie year</p>
+            <p id="movieLength">Runtime:</p>
+            <p><span class="highlight">IMDB Rating:</span> <span id="movieRating">8.5</span></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // TJEK VARIABEL HER!!!!!!
+    const movie_id = '3';
+    fetch(`http://localhost:8080/movie/${movie_id}`)
+        .then(response => response.json())
+        .then(movie => {
+            document.getElementById('moviePoster').innerHTML = `
+                <img src="${movie.poster}" alt="${movie.title} Poster">
+            `;
+            document.getElementById('movieTitle').innerText = movie.title;
+            //Release date i stedet for year??
+            document.getElementById('movieYear').innerText = `Year: ${movie.year}`;
+            document.getElementById('movieLength').innerText = `Runtime: ${movie.runtime} `;
+            document.getElementById('movieRating').innerText = movie.imdbRating;
+        })
+        .catch(error => console.error('Fejl ved hentning af filmen:', error));
+</script>
+
+</body>
+</html>
