@@ -63,6 +63,8 @@ searchButton.addEventListener("click", function () {
     }
 });
 
+saveButton.addEventListener("click", function (e) {
+    e.preventDefault();
 
     const updatedMovie = {
         movieId: currentMovieId,
@@ -99,6 +101,7 @@ searchButton.addEventListener("click", function () {
         alert("Ingen film valgt til opdatering.");
     }
 ;
+})
 deleteButton.addEventListener("click", function () {
     if (currentMovieId) {
         if (confirm("Er du sikker på, at du vil slette denne film?")) {
