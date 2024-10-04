@@ -9,7 +9,7 @@
 
     movieItem.innerHTML = `
                     <div class="poster">
-                        <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
+                        <a href= "http://localhost:8080/movie/${movie.movieId}" >
                             <img src="${movie.poster}" alt="${movie.title} Plakat">
                         </a>
                     </div>
@@ -59,7 +59,7 @@
 
     movieItem.innerHTML = `
             <div class="poster">
-                <a href="https://www.imdb.com/title/${addedMovie.imdbID}" target="_blank">
+                <a href= "http://localhost:8080/movie/${movie.movieId}" >
                     <img src="${addedMovie.poster}" alt="${addedMovie.title} Plakat">
                 </a>
             </div>
