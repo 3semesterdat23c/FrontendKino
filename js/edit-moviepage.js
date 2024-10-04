@@ -16,7 +16,7 @@ const movieImdbInput = document.getElementById("movie-Imdb-rating");
 const movieImdbIDinput = document.getElementById("movie-Imdb-ID");
 const movieActorsInput = document.getElementById("movie-actors");
 const movieDirectorsInput = document.getElementById("movie-directors");
-const movieRelaseDateInput = document.getElementById("movie-relase-date");
+const movieRelaseDateInput = document.getElementById("movie-release-date");
 let currentMovieId = null; // To keep track of the current movie
 const backendUrl = 'http://localhost:8080'; // Replace with your backend's URL and port
 
@@ -50,7 +50,7 @@ searchButton.addEventListener("click", function () {
                     movieposterInput.value = movie.poster;
                     movieImdbInput.value = movie.imdbRating;
                     movieImdbIDinput.value = movie.imdbID;
-
+                    movieRelaseDateInput.value = movie.released;
                     // Open the modal
                     modal.classList.add("modal-open");
                 } else {
@@ -67,8 +67,8 @@ searchButton.addEventListener("click", function () {
     const updatedMovie = {
         movieId: currentMovieId,
         title: titleInput.value.trim(),
-        year: parseInt(yearInput.value, 10),
-        released: releasedInput.value.trim(),
+        year: releaseYearInput.value,
+        released: movieRelaseDateInput.value.trim(),
         runtime: runtimeInput.value.trim(),
         genres: genreInput.value.split(',').map(name => ({ genreName: name.trim() })).filter(g => g.genreName),
         directors: movieDirectorsInput.value.split(',').map(name => ({ fullName: name.trim() })).filter(d => d.fullName),
