@@ -3,7 +3,7 @@ const modal = document.getElementById("edit-movie-modal");
 const closeModalButton = document.getElementById("close-modal");
 const cancelButton = document.getElementById("cancel-button");
 const saveButton = document.getElementById("save-button");
-
+const deleteButton = document.getElementById("delete-movie-btn");
 // Input elements
 const searchInput = document.getElementById("searched-movie");
 const searchButton = document.getElementById("search-button");
@@ -83,6 +83,26 @@ saveButton.addEventListener("click", function (e) {
             .catch(error => console.error("Fejl ved opdatering af film:", error));
     } else {
         alert("Ingen film valgt til opdatering.");
+    }
+});
+deleteButton.addEventListener("click", function () {
+    if (currentMovieId) {
+        if (confirm("Er du sikker på, at du vil slette denne film?")) {
+            fetch(`${backendUrl}/movie/${currentMovieId}`, {
+                method: 'DELETE',
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Filmen er blevet slettet!");
+                        modal.classList.remove("modal-open");
+                    } else {
+                        alert("Der opstod en fejl under sletningen.");
+                    }
+                })
+                .catch(error => console.error("Fejl ved sletning af film:", error));
+        }
+    } else {
+        alert("Ingen film valgt til sletning.");
     }
 });
 
