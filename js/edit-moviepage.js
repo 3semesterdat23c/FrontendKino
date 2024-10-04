@@ -8,10 +8,15 @@ const deleteButton = document.getElementById("delete-movie-btn");
 const searchInput = document.getElementById("searched-movie");
 const searchButton = document.getElementById("search-button");
 const titleInput = document.getElementById("movie-title");
-const descriptionInput = document.getElementById("movie-description");
 const releaseYearInput = document.getElementById("movie-release-year");
 const genreInput = document.getElementById("movie-genre");
-
+const runtimeInput = document.getElementById("movie-runtime");
+const movieposterInput = document.getElementById("movie-poster");
+const movieImdbInput = document.getElementById("movie-Imdb-rating");
+const movieImdbIDinput = document.getElementById("movie-Imdb-ID");
+const movieActorsInput = document.getElementById("movie-actors");
+const movieDirectorsInput = document.getElementById("movie-directors");
+const movieRelaseDateInput = document.getElementById("movie-relase-date");
 let currentMovieId = null; // To keep track of the current movie
 const backendUrl = 'http://localhost:8080'; // Replace with your backend's URL and port
 
@@ -32,15 +37,19 @@ searchButton.addEventListener("click", function () {
             })
             .then(movies => {
                 if (movies.length > 0) {
-                    // For simplicity, take the first movie that matches
                     const movie = movies[0];
                     currentMovieId = movie.movieId;
 
-                    // Fill the modal with movie data
+                    // Populate modal with movie data
                     titleInput.value = movie.title;
-                    descriptionInput.value = movie.description;
                     releaseYearInput.value = movie.year;
-                    genreInput.value = movie.actors;
+                    runtimeInput.value = movie.runtime;
+                    genreInput.value = movie.genres.map(g => g.genreName).join(', ');
+                    movieDirectorsInput.value = movie.directors.map(d => d.fullName).join(', ');
+                    movieActorsInput.value = movie.actors.map(a => a.fullName).join(', ');
+                    movieposterInput.value = movie.poster;
+                    movieImdbInput.value = movie.imdbRating;
+                    movieImdbIDinput.value = movie.imdbID;
 
                     // Open the modal
                     modal.classList.add("modal-open");
@@ -53,19 +62,24 @@ searchButton.addEventListener("click", function () {
         alert("Indtast venligst en film titel.");
     }
 });
-saveButton.addEventListener("click", function (e) {
-    e.preventDefault();
+
 
     const updatedMovie = {
-        movieId: currentMovieId, // Include the movieId in the payload
+        movieId: currentMovieId,
         title: titleInput.value.trim(),
-        description: descriptionInput.value.trim(),
-        releaseYear: parseInt(releaseYearInput.value, 10),
-        genre: genreInput.value.trim()
+        year: parseInt(yearInput.value, 10),
+        released: releasedInput.value.trim(),
+        runtime: runtimeInput.value.trim(),
+        genres: genreInput.value.split(',').map(name => ({ genreName: name.trim() })).filter(g => g.genreName),
+        directors: movieDirectorsInput.value.split(',').map(name => ({ fullName: name.trim() })).filter(d => d.fullName),
+        actors: movieActorsInput.value.split(',').map(name => ({ fullName: name.trim() })).filter(a => a.fullName),
+        poster: movieposterInput.value.trim(),
+        imdbRating: movieImdbInput.value.trim(),
+        imdbID: movieImdbIDinput.value.trim()
     };
 
     if (currentMovieId) {
-        fetch(`/movies/${currentMovieId}`, {
+        fetch(`${backendUrl}/movie/${currentMovieId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -84,7 +98,7 @@ saveButton.addEventListener("click", function (e) {
     } else {
         alert("Ingen film valgt til opdatering.");
     }
-});
+;
 deleteButton.addEventListener("click", function () {
     if (currentMovieId) {
         if (confirm("Er du sikker på, at du vil slette denne film?")) {
