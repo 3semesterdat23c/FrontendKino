@@ -1,26 +1,25 @@
 
-    fetch('http://localhost:8080/getMovies')
+fetch('http://localhost:8080/getMovies')
     .then(response => response.json())
     .then(data => {
-    const moviesGrid = document.getElementById('moviesGrid');
-    data.forEach(movie => {
-    const movieItem = document.createElement('div');
-    movieItem.classList.add('movie-item');
+        const moviesGrid = document.getElementById('moviesGrid');
+        data.forEach(movie => {
+            const movieItem = document.createElement('div');
+            movieItem.classList.add('movie-item');
 
-    movieItem.innerHTML = `
-                    <div class="poster">
-                        <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
-                            <img src="${movie.poster}" alt="${movie.title} Plakat">
-                        </a>
-                    </div>
-                    <div class="title">${movie.title}</div>
-                `;
+            movieItem.innerHTML = `
+                <div class="poster">
+                    <a href="movie_detail.html?id=${movie.movieId}">
+                        <img src="${movie.poster}" alt="${movie.title} Poster">
+                    </a>
+                </div>
+                <div class="title">${movie.title}</div>
+            `;
 
-
-    moviesGrid.appendChild(movieItem);
-});
-})
-    .catch(error => console.error('Fejl ved hentning af film:', error));
+            moviesGrid.appendChild(movieItem);
+        });
+    })
+    .catch(error => console.error('Error fetching movies:', error));
 
     document.getElementById('btn-save-movie').addEventListener('click', function () {
         const movie = {
@@ -60,13 +59,15 @@
                 movieItem.classList.add('movie-item');
 
                 movieItem.innerHTML = `
-            <div class="poster">
-                <a href="https://www.imdb.com/title/${addedMovie.imdbID}" target="_blank">
-                    <img src="${addedMovie.poster}" alt="${addedMovie.title} Poster">
-                </a>
-            </div>
-            <div class="title">${addedMovie.title}</div>
-        `;
+    <div class="poster">
+        <a href="/movie-details.html?id=${addedMovie.movieId}">
+            <img src="${addedMovie.poster}" alt="${addedMovie.title} Poster">
+        </a>
+    </div>
+    <div class="title">${addedMovie.title}</div>
+`;
+
+
 
                 moviesGrid.appendChild(movieItem);
 
