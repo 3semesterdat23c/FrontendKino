@@ -37,6 +37,7 @@ searchButton.addEventListener("click", function () {
             })
             .then(movies => {
                 if (movies.length > 0) {
+                    // For simplicity, take the first movie that matches
                     const movie = movies[0];
                     currentMovieId = movie.movieId;
 
