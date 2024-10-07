@@ -1,5 +1,5 @@
 
-fetch('http://localhost:8080/getMovies')
+fetch('http://localhost:8080/movies')
     .then(response => response.json())
     .then(data => {
         const moviesGrid = document.getElementById('moviesGrid');
