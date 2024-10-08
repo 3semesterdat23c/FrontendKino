@@ -36,3 +36,6 @@ document.getElementById("create-admin-form").addEventListener("submit", async fu
         alert("An error occurred while registering the admin.");
     }
 });
+document.getElementById("edit-movie-btn").addEventListener("click", function() {
+    window.location.href = "edit-moviepage.html";
+});
