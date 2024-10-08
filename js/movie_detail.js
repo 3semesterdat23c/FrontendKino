@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
             theatre: { theatreId: document.getElementById("theatreId").value },
             admin: { adminId: document.getElementById("adminId").value },
             dateTime: document.getElementById("dateTime").value,
-            endTime: document.getElementById("endTime").value
+           // endTime: document.getElementById("endTime").value
         };
 
         // Send a POST request to the backend to create a new showing
