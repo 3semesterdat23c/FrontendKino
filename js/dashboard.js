@@ -39,6 +39,52 @@ document.getElementById("create-admin-form").addEventListener("submit", async fu
 document.getElementById("edit-movie-btn").addEventListener("click", function() {
     window.location.href = "edit-moviepage.html";
 });
+document.getElementById("create-theatre").addEventListener("click", function (){
+    document.getElementById("create-theatre-modal").style.display="block";
+});
+
+document.getElementById("create-theatre-form").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const seatRows = document.getElementById("rows").value;
+    const seatsPerRow = document.getElementById("seats").value;
+
+    try {
+        const response = await fetch("http://localhost:8080/theatre/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                seatRows: seatRows,  // Use seatRows instead of rows
+                seatsPerRow: seatsPerRow  // Use seatsPerRow instead of seats
+            })
+        });
+
+        if (response.ok) {
+            alert("Theatre created successfully");
+            document.getElementById("create-theatre-form").reset();
+            document.getElementById("create-theatre-modal").style.display = "none";
+        } else {
+            const errorText = await response.text();
+            alert("Error: " + errorText);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while creating the theatre.");
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 document.getElementById('btn-save-movie').addEventListener('click', function () {
