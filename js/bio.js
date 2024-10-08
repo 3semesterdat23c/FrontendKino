@@ -1,92 +1,58 @@
-// Track selected seats
-const selectedSeats = new Set();
-
-// Function to fetch seat layout from backend for a specific showing and theater
-function fetchSeatLayout(showingId, theaterId) {
-    fetch(`/showing/${showingId}/seats?theaterId=${theaterId}`)
+// Funktion til at hente sæder for en bestemt showing
+function loadSeatsForShowing(showingId) {
+    fetch(`/showing/${showingId}/seats`)
         .then(response => response.json())
         .then(data => {
-            generateSeats(data); // Generate the seat layout dynamically based on fetched data
+            renderSeats(data.bookedSeats, data.availableSeats);
         })
-        .catch(error => console.error('Error fetching seat data:', error));
+        .catch(error => {
+            console.error("Error fetching seats: ", error);
+        });
 }
 
-// Function to dynamically generate seat layout from backend data
-function generateSeats(seatData) {
-    const seatContainer = document.getElementById('seatContainer');
-    seatContainer.innerHTML = ''; // Clear previous seats
+// Funktion til at rendere sæder baseret på status (booked/available)
+function renderSeats(bookedSeats, availableSeats) {
+    const container = document.querySelector('.container');
+    container.innerHTML = ''; // Fjern tidligere sæder
 
-    seatData.forEach(seat => {
-        const row = document.querySelector(`.row[data-row="${seat.rowNumber}"]`) || createRow(seat.rowNumber);
+    // Render booked (optaget) sæder
+    bookedSeats.forEach(seat => {
         const seatElement = document.createElement('div');
-        seatElement.classList.add('seat');
-        seatElement.setAttribute('data-seat-id', seat.seatId);
+        seatElement.classList.add('seat', 'occupied'); // Marker som optaget
+        seatElement.dataset.seatId = seat.seatId;
+        seatElement.innerText = `${seat.theatre.theatreId}-${seat.rowNumber}-${seat.seatNumber}`;
+        container.appendChild(seatElement);
+    });
 
-        // Set seat status based on backend data (either 'available' or 'occupied')
-        if (seat.status === 'OCCUPIED') {
-            seatElement.classList.add('occupied');
-        } else if (seat.status === 'AVAILABLE') {
-            seatElement.classList.add('available');
-        }
+    // Render available (ledig) sæder
+    availableSeats.forEach(seat => {
+        const seatElement = document.createElement('div');
+        seatElement.classList.add('seat', 'available'); // Marker som ledig
+        seatElement.dataset.seatId = seat.seatId;
+        seatElement.innerText = `${seat.theatre.theatreId}-${seat.rowNumber}-${seat.seatNumber}`;
 
-        row.appendChild(seatElement);
-
-        // Add click event to select available seats
-        seatElement.addEventListener('click', () => {
-            if (!seatElement.classList.contains('occupied')) {
-                seatElement.classList.toggle('selected');
-                if (seatElement.classList.contains('selected')) {
-                    selectedSeats.add(seat.seatId); // Add seat to selected seats
-                } else {
-                    selectedSeats.delete(seat.seatId); // Remove seat from selected seats
-                }
-            }
-        });
-
-        seatContainer.appendChild(row);
+        // Gør sædet klikbart for at vælge det
+        seatElement.addEventListener('click', () => selectSeat(seat.seatId));
+        container.appendChild(seatElement);
     });
 }
 
-// Function to create a row if it doesn't exist
-function createRow(rowNumber) {
-    const row = document.createElement('div');
-    row.classList.add('row');
-    row.setAttribute('data-row', rowNumber);
-    return row;
+// Funktion til at håndtere valg af sæde
+function selectSeat(seatId) {
+    // Når et sæde vælges, markeres det visuelt og kan gemmes for videre behandling
+    const selectedSeat = document.querySelector(`[data-seat-id="${seatId}"]`);
+
+    if (selectedSeat.classList.contains('selected')) {
+        // Hvis sædet allerede er valgt, fjern markeringen
+        selectedSeat.classList.remove('selected');
+    } else {
+        // Marker sædet som valgt
+        selectedSeat.classList.add('selected');
+    }
+
+    console.log('Selected seat ID: ' + seatId);
 }
 
-// Function to save selected seats as a booking
-function saveBooking(email, showingId) {
-    const selectedSeatsArray = Array.from(selectedSeats);
-
-    const bookingData = {
-        showingId: showingId,
-        email: email,
-        seatIds: selectedSeatsArray
-    };
-
-    fetch('/showing/booking', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bookingData)
-    })
-
-        .then(response => response.json())
-        .then(data => {
-            alert('Booking gemt!');
-            console.log('Booking saved:', data);
-        })
-        .catch(error => console.error('Error saving booking:', error));
-}
-
-// Fetch seat layout when the page loads or when a user selects a specific showing
-fetchSeatLayout(1, 1); // Pass the actual showingId and theaterId dynamically
-
-// Example call to save the booking (trigger this when user submits the form)
-document.getElementById('saveBookingBtn').addEventListener('click', function() {
-    const email = document.getElementById('email').value; // Get email from input field
-    const showingId = 1; // This should come dynamically, depending on the user’s selection
-    saveBooking(email, showingId);
-});
+// Indlæs sæderne for en given showing
+// Du skal kalde denne funktion med den korrekte showingId, fx loadSeatsForShowing(1);
+loadSeatsForShowing(1);

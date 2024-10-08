@@ -69,11 +69,14 @@ body {
 }
 
 .legend-item .seat {
-    margin-right: 10px;
-}
-
-.legend-item .seat.available {
+    width: 30px;
+    height: 30px;
     background-color: green;
+    margin-right: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
 }
 
 .legend-item .seat.occupied {
