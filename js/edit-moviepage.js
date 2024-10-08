@@ -123,4 +123,3 @@ deleteButton.addEventListener("click", function () {
         alert("Ingen film valgt til sletning.");
     }
 });
-

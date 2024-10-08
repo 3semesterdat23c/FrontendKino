@@ -6,77 +6,13 @@
     <title>Biograf Filmoversigt</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/Landingpage.css">
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
 <div class="container">
     <h1>Biograf Filmoversigt</h1>
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#movie-modal">
-        Add Movie
-    </button>
-    <div class="movie-grid" id="moviesGrid">
-    </div>
-</div>
 
-<div class="modal fade" id="movie-modal" tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Add Movie</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="movie-form">
-                    <div class="mb-3">
-                        <label for="input-title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="input-title" name="title" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="input-year" class="form-label">Year</label>
-                        <input type="text" class="form-control" id="input-year" name="year">
-                    </div>
-                    <div class="mb-3">
-                        <label for="input-released" class="form-label">Released</label>
-                        <input type="text" class="form-control" id="input-released" name="released">
-                    </div>
-                    <div class="mb-3">
-                        <label for="input-runtime" class="form-label">Runtime</label>
-                        <input type="text" class="form-control" id="input-runtime" name="runtime">
-                    </div>
-                    <div class="mb-3">
-                        <label for="input-genre" class="form-label">Genre</label>
-                        <input type="text" class="form-control" id="input-genre" name="genre">
-                    </div>
-                    <div class="mb-3">
-                        <label for="input-director" class="form-label">Director</label>
-                        <input type="text" class="form-control" id="input-director" name="director">
-                    </div>
-                    <div class="mb-3">
-                        <label for="input-actors" class="form-label">Actors</label>
-                        <input type="text" class="form-control" id="input-actors" name="actors">
-                    </div>
-                    <div class="mb-3">
-                        <label for="input-poster" class="form-label">Poster URL</label>
-                        <input type="text" class="form-control" id="input-poster" name="poster">
-                    </div>
-                    <div class="mb-3">
-                        <label for="input-imdbRating" class="form-label">IMDb Rating</label>
-                        <input type="text" class="form-control" id="input-imdbRating" name="imdbRating">
-                    </div>
-                    <div class="mb-3">
-                        <label for="input-imdbID" class="form-label">IMDb ID</label>
-                        <input type="text" class="form-control" id="input-imdbID" name="imdbID">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button id="btn-save-movie" type="button" class="btn btn-primary">Save Changes</button>
-            </div>
-        </div>
+    <div class="movie-grid" id="moviesGrid">
     </div>
 </div>
 <button type="button" class="btn btn-primary mb-3" onclick="window.location.href='Login.html'">Log ind som admin</button>
