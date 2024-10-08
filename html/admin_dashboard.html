@@ -9,6 +9,7 @@
 <h2>Welcome to the Admin Dashboard</h2>
 <button id="create-admin-btn">Create New Admin</button>
 <button id="edit-movie-btn">Edit Movie</button>
+<button id="create-theatre">Create theatre</button>
 
 
 <div id="create-admin-modal" style="display: none;">
@@ -22,6 +23,17 @@
         <button type="submit">Register Admin</button>
     </form>
 </div>
+
+<div id="create-theatre-modal" style="display: none;">
+    <form id="create-theatre-form">
+        <label for="seats">Seats</label>
+        <input type="number" id="seats" required>
+        <label for="rows">Rows</label>
+        <input type="number" id="rows" required>
+        <button type="submit">Create Theatre</button>
+    </form>
+</div>
+
 
 <script src="../js/dashboard.js" type="module"></script>
 </body>
