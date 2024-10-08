@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.screen {
+    background-color: #ccc;
+    height: 40px;
+    width: 70%;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    color: #000;
+}
+
+.form-container {
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.seat {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.seat.occupied {
+    background-color: red;
+    cursor: not-allowed;
+}
+
+.seat.selected {
+    background-color: orange;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.legend-item .seat {
+    margin-right: 10px;
+}
+
+.legend-item .seat.available {
+    background-color: green;
+}
+
+.legend-item .seat.occupied {
+    background-color: red;
+}
+
+.legend-item .seat.selected {
+    background-color: orange;
+}

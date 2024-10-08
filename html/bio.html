@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biograf Sædevalg</title>
+    <link rel="stylesheet" href="../css/bio.css">
+</head>
+<body>
+<div class="screen">Skærm</div>
+
+<!-- Container til dynamisk oprettede sæder -->
+<div class="container" id="seatContainer"></div>
+
+<!-- Email og booking knap -->
+<div class="form-container">
+    <input type="email" id="email" placeholder="Indtast din email" required>
+    <button id="saveBookingBtn">Gem Booking</button>
+</div>
+
+<!-- Sæde status forklaring -->
+<div class="legend">
+    <div class="legend-item">
+        <span class="seat available"></span> Ledig
+    </div>
+    <div class="legend-item">
+        <span class="seat occupied"></span> Optaget
+    </div>
+    <div class="legend-item">
+        <span class="seat selected"></span> Dine pladser
+    </div>
+</div>
+
+<script src="../js/bio.js"></script>
+</body>
+</html>
