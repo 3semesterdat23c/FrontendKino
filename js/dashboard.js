@@ -49,7 +49,7 @@ document.getElementById("create-theatre-form").addEventListener("submit", async 
     const seatsPerRow = document.getElementById("seats").value;
 
     try {
-        const response = await fetch("http://localhost:8081/theatre/create", {
+        const response = await fetch("http://localhost:8080/theatre/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
