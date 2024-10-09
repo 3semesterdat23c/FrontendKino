@@ -17,7 +17,9 @@ async function checkAdminSession() {
 }
 
 // Call the session check on page load
-checkAdminSession();
+document.addEventListener("DOMContentLoaded", function() {
+    checkAdminSession();
+});
 
 document.getElementById("create-admin-btn").addEventListener("click", function() {
     document.getElementById("create-admin-modal").style.display = "block";
