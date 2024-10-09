@@ -40,7 +40,7 @@ body {
 .seat {
     width: 40px;
     height: 40px;
-    background-color: green;
+    background-color: green; /* Default color for available seats */
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
@@ -48,12 +48,13 @@ body {
 }
 
 .seat.occupied {
-    background-color: red;
+    background-color: red; /* Red for occupied seats */
     cursor: not-allowed;
+    pointer-events: none;  /* Make occupied seats unclickable */
 }
 
 .seat.selected {
-    background-color: orange;
+    background-color: orange; /* Orange for selected seats */
 }
 
 .legend {
