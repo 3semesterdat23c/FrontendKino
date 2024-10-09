@@ -1,0 +1,33 @@
+header {
+    background-color: black; /* Sort baggrund */
+    color: white; /* Hvid tekst */
+    padding: 20px; /* Indvendig padding for headeren */
+    display: flex; /* Brug flexbox for at alignere indholdet */
+    justify-content: space-between; /* Placer elementer med plads imellem */
+    align-items: center; /* Vertikal centreret indhold */
+}
+
+header h1 {
+    margin: 0; /* Fjern standard margin fra overskriften */
+}
+
+header nav ul {
+    list-style: none; /* Fjern punkttegn fra listen */
+    padding: 0; /* Fjern padding */
+    margin: 0; /* Fjern margin */
+    display: flex; /* Brug flexbox til at style listen */
+}
+
+header nav ul li {
+    margin-left: 20px; /* Mellemrum mellem menupunkter */
+}
+
+header nav ul li a {
+    color: white; /* Hvid tekst til links */
+    text-decoration: none; /* Fjern understregning */
+    transition: color 0.3s; /* Glidende overgang for hover-effekt */
+}
+
+header nav ul li a:hover {
+    color: #ddd; /* Lysere farve ved hover */
+}
