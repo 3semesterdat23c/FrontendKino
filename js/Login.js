@@ -5,7 +5,7 @@ document.getElementById("login-form").addEventListener("submit", async function 
     const password = document.getElementById("password").value;
 
     try {
-        //Skal lige tjekke at path'en er korrekt
+        // Ensure the path is correct
         const response = await fetch("http://localhost:8080/admin/login", {
             method: "POST",
             headers: {
@@ -14,19 +14,19 @@ document.getElementById("login-form").addEventListener("submit", async function 
             body: JSON.stringify({
                 username: brugernavn,
                 password: password
-            })
+            }),
+            credentials: "include" // Include credentials (cookies) in the request
         });
 
         if (response.ok) {
             alert("Du er nu logget ind som admin");
-            window.location.href = 'admin_dashboard.html';//HER SKAL VORES HTML SIDE SOM MAN SKAL VIDERE TIL VÆRE
+            window.location.href = 'admin_dashboard.html'; // Redirect to the admin dashboard
         } else {
             document.getElementById("error-message").style.display = "block";
         }
     } catch (error) {
         console.error("Error", error);
         document.getElementById("error-message").innerText = "Der skete en fejl, prøv igen!";
-        document.getElementById("error-message").style.display= "block";
-
+        document.getElementById("error-message").style.display = "block";
     }
-})
+});
