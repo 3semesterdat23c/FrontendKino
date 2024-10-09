@@ -2,6 +2,9 @@
     background: #1a1a1a;
     background-size: cover;
     padding-bottom: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 @media (min-width: 768px) {
@@ -31,6 +34,9 @@
     font-weight: bold;
     color: #ffcc00;
     font-size: 70px;
+    text-align: center;
+    margin: 0;
+
 }
 
 .header-dark .navbar .navbar-brand:hover {

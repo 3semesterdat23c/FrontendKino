@@ -79,4 +79,7 @@ img {
     .details p {
         font-size: 1.1em;
     }
+    .modal, .modal-content {
+        z-index: 9; /* Sænk z-index til under headerens */
+    }
 }
