@@ -1,3 +1,5 @@
+let selectedSeatIds = [];
+
 // Function to load all seats for a specific showing
 function loadSeatsForShowing(showingId) {
     // Fetch the seats data, including seatRows and seatsPerRow
@@ -22,12 +24,9 @@ function renderSeats(allSeats, bookedSeats, seatRows, seatsPerRow) {
     const container = document.querySelector('.container');
     container.innerHTML = ''; // Clear previous seats
 
-    let rowElement = document.createElement('div');
-    rowElement.classList.add('row');
-
     // Loop over all rows and seats per row
     for (let rowIndex = 1; rowIndex <= seatRows; rowIndex++) {
-        rowElement = document.createElement('div');
+        const rowElement = document.createElement('div');
         rowElement.classList.add('row');  // Create a new row for each rowIndex
 
         for (let seatIndex = 1; seatIndex <= seatsPerRow; seatIndex++) {
@@ -53,6 +52,14 @@ function renderSeats(allSeats, bookedSeats, seatRows, seatsPerRow) {
         }
         container.appendChild(rowElement);  // Append the row to the container after completing all seats in the row
     }
+
+    // Update selected seats visually
+    selectedSeatIds.forEach(seatId => {
+        const selectedSeat = container.querySelector(`[data-seat-id="${seatId}"]`);
+        if (selectedSeat) {
+            selectedSeat.classList.add('selected');
+        }
+    });
 }
 
 // Function to handle seat selection
@@ -62,11 +69,60 @@ function selectSeat(seatId) {
     // Toggle selection
     if (selectedSeat.classList.contains('selected')) {
         selectedSeat.classList.remove('selected');  // Unselect if already selected
+        selectedSeatIds = selectedSeatIds.filter(id => id !== seatId); // Remove from selectedSeatIds
     } else {
         selectedSeat.classList.add('selected');  // Mark as selected
+        selectedSeatIds.push(seatId); // Add to selectedSeatIds
     }
 
-    console.log('Selected seat ID: ' + seatId);
+    console.log('Selected seat IDs: ', selectedSeatIds);
+}
+
+// Add event listener to the save booking button
+document.getElementById('save_booking_btn').addEventListener('click', saveBooking);
+
+// Function to handle saving the booking
+function saveBooking() {
+    const emailInput = document.getElementById('email');
+    const email = emailInput.value.trim();
+    if (!email) {
+        alert('Indtast venligst din email.');
+        return;
+    }
+
+    const showingId = 1; // Replace with the actual showing ID or fetch it dynamically
+    createBooking(showingId, email, selectedSeatIds);
+}
+
+// Function to send booking data to the backend
+function createBooking(showingId, email, seatIds) {
+    if (!Array.isArray(seatIds) || seatIds.length === 0) {
+        alert('No seats selected. Please select at least one seat.');
+        return;
+    }
+
+    fetch(`http://localhost:8080/showing/booking/${showingId}?email=${encodeURIComponent(email)}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(seatIds) // Ensure you're sending an array
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text); });
+            }
+            return response.text();
+        })
+        .then(responseData => {
+            alert('Booking gemt!');
+            // Update the UI by calling loadSeatsForShowing
+            loadSeatsForShowing(showingId); // Refresh the seat display
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Der opstod en fejl under oprettelse af bookingen: ' + error.message);
+        });
 }
 
 // Load seats for the initial showing (example: showingId = 1)
