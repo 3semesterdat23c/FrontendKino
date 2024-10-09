@@ -1,6 +1,6 @@
 // Funktion til at hente sæder for en bestemt showing
 function loadSeatsForShowing(showingId) {
-    fetch(`/showing/${showingId}/seats`)
+    fetch(`http://localhost:8080/showing/${showingId}/seats`)
         .then(response => response.json())
         .then(data => {
             renderSeats(data.bookedSeats, data.availableSeats);
@@ -53,6 +53,4 @@ function selectSeat(seatId) {
     console.log('Selected seat ID: ' + seatId);
 }
 
-// Indlæs sæderne for en given showing
-// Du skal kalde denne funktion med den korrekte showingId, fx loadSeatsForShowing(1);
 loadSeatsForShowing(1);
