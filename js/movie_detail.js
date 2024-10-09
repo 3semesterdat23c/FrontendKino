@@ -110,7 +110,63 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Utility function to get query parameter from the URL
+// movie_detail.js
+
+// Function to populate theatre dropdown
+function populateTheatreDropdown() {
+    const theatreSelect = document.getElementById('theatreId');
+
+    // Fetch the list of theatres from the backend
+    fetch('http://localhost:8080/showing/theatres')
+        .then(response => response.json())
+        .then(theatres => {
+            theatreSelect.innerHTML = '';
+
+            const placeholderOption = document.createElement('option');
+            placeholderOption.text = "Select a Theatre";
+            placeholderOption.value = "";
+            theatreSelect.appendChild(placeholderOption);
+
+            theatres.forEach(theatre => {
+                const option = document.createElement('option');
+                option.value = theatre.theatreId;
+                option.text = theatre.theatreId;
+                theatreSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching theatres:', error));
+}
+
+// Call the function when the page is loaded or modal is opened
+document.addEventListener('DOMContentLoaded', populateTheatreDropdown);
+
+function populateAdminDropdown() {
+    const adminSelect = document.getElementById('adminId');
+
+
+    fetch('http://localhost:8080/showing/admins')
+        .then(response => response.json())
+        .then(admins => {
+            adminSelect.innerHTML = '';
+
+            const placeholderOption = document.createElement('option');
+            placeholderOption.text = "Select a user";
+            placeholderOption.value = "";
+            adminSelect.appendChild(placeholderOption);
+
+            admins.forEach(admin => {
+                const option = document.createElement('option');
+                option.value = admin.adminId;
+                option.text = admin.username;
+                adminSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching admins:', error));
+}
+
+document.addEventListener('DOMContentLoaded', populateAdminDropdown);
+
+
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);

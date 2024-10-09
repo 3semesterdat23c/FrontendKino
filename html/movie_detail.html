@@ -44,11 +44,14 @@
             <span class="close">&times;</span>
             <h2>Add New Showing</h2>
             <form id="addShowingForm">
-                <label for="theatreId">Sal:</label>
-                <input type="text" id="theatreId" name="theatreId" required>
+      <label for="theatreId">Theatre ID:</label>
+                <select name="theatreId" id="theatreId">
+            </select>
 
-                <label for="adminId">Admin ID:</label>
-                <input type="text" id="adminId" name="adminId" required>
+
+                <label for="adminId">Movie operator:</label>
+                <select name="adminId" id="adminId">
+            </select>
 
                 <label for="dateTime">Start dato og tid:</label>
                 <input type="datetime-local" id="dateTime" name="dateTime" required>
