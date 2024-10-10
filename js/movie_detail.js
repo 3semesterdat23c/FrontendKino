@@ -65,8 +65,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const addShowingButton = document.getElementById("addShowingButton");
     const closeModal = document.querySelector(".close");
 
-    addShowingButton.addEventListener("click", () => {
-        modal.style.display = "block"; // Show the modal
+    async function adminLoggedIn() {
+        try {
+            const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+                method: "GET",
+                credentials: "include" // Include credentials for session management
+            });
+            return response.ok;
+        } catch (error) {
+            console.error("Error checking admin session:", error);
+            return false;
+        }
+    }
+
+// Show the button if the condition is met
+    adminLoggedIn().then((isLoggedIn) => {
+        if (isLoggedIn) {
+            addShowingButton.style.display = 'inline-block';
+            addShowingButton.addEventListener("click", () => {
+                modal.style.display = "block"; // Show the modal
+            });
+        }
     });
 
     closeModal.addEventListener("click", () => {
