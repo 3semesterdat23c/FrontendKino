@@ -4,54 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filminformation</title>
-  <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/header.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/movie_detail.css">
-
 </head>
 <body>
 <div class="header">
     <a href="landing-page.html" class="logo">KinoXP</a>
 </div>
-<div class="container">
-    <div id="movieDetails">
+<div class="container d-flex">
+    <!-- Movie Details Section -->
+    <div id="movieDetails" class="p-3">
         <h2>Informationer om filmen</h2>
         <p>Title: <span id="movieTitle"></span></p>
         <p>Release Year: <span id="releaseYear"></span></p>
         <img id="moviePoster" alt="Movie Poster" style="width:200px;"/>
     </div>
 
-    <h2>Filmvisninger</h2>
-    <ul id="showingsList">
-        <!-- Dynamically populated showings will appear here -->
-    </ul>
+    <!-- Showings List Section -->
+    <div class="p-3" style="flex-grow: 1;">
+        <h2>Filmvisninger</h2>
+        <ul id="showingsList">
+            <!-- Dynamically populated showings will appear here -->
+        </ul>
+        <!-- Button to trigger modal -->
+        <button id="addShowingButton" class="btn btn-primary mt-3" style="display: none;">Tilføj ny filmvisning</button>
+    </div>
+</div>
 
-    <!-- Button to trigger modal -->
-    <button id="addShowingButton" class="btn-primary" style="display: none" >Tilføj ny filmvisning</button>
+<!-- Modal -->
+<div id="showingModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Tilføj ny filmvisning</h2>
+        <form id="addShowingForm">
+            <label for="theatreId">Sal:</label>
+            <select name="theatreId" id="theatreId"></select>
 
-    <!-- Modal -->
-    <div id="showingModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Tilføj ny filmvisning</h2>
-            <form id="addShowingForm">
-      <label for="theatreId">Sal:</label>
-                <select name="theatreId" id="theatreId">
-            </select>
+            <label for="adminId">Film operatør:</label>
+            <select name="adminId" id="adminId"></select>
 
+            <label for="dateTime">Start dato og tid:</label>
+            <input type="datetime-local" id="dateTime" name="dateTime" required>
 
-                <label for="adminId">Film operatør:</label>
-                <select name="adminId" id="adminId">
-            </select>
-
-                <label for="dateTime">Start dato og tid:</label>
-                <input type="datetime-local" id="dateTime" name="dateTime" required>
-
-
-                <button type="submit">Tilføj visning</button>
-            </form>
-            <div id="responseMessage"></div>
-        </div>
+            <button type="submit" class="btn btn-primary mt-3">Tilføj visning</button>
+        </form>
+        <div id="responseMessage"></div>
     </div>
 </div>
 
