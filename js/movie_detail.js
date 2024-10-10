@@ -18,14 +18,37 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("movieTitle").textContent = movie.title || 'N/A';
                     document.getElementById("releaseYear").textContent = movie.year || 'N/A';
                     document.getElementById("moviePoster").src = movie.poster || 'default_poster.jpg';
+
+                    if (movie.actors && Array.isArray(movie.actors)) {
+                        const actorList = movie.actors.map(actor => `<li>${actor.fullName}</li>`).join('');
+                        document.getElementById("actors").innerHTML = `<ul>${actorList}</ul>`;
+                    } else {
+                        document.getElementById("actors").textContent = 'N/A';
+                    }
+                    if (movie.directors && Array.isArray(movie.directors)) {
+                        const directorList = movie.directors.map(director => `<li>${director.fullName}</li>`).join('');
+                        document.getElementById("directors").innerHTML = `<ul>${directorList}</ul>`;
+                    } else {
+                        document.getElementById("directors").textContent = 'N/A';
+                    }
+                    if (movie.genres && Array.isArray(movie.genres)) {
+                        const genreNames = movie.genres.map(genre => genre.genreName).join(', ');
+                        document.getElementById("genres").textContent = genreNames || 'N/A';
+                    } else {
+                        document.getElementById("genres").textContent = 'N/A';
+                    }
+
                 } else {
                     document.getElementById('movieDetails').innerHTML = '<p>Movie not found.</p>';
                 }
+
             })
             .catch(error => {
                 console.error('Error fetching movie details:', error);
                 document.getElementById('movieDetails').innerHTML = '<p>Error fetching movie details.</p>';
             });
+
+
     }
 
     // Updated fetchShowings function
