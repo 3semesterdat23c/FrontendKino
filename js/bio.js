@@ -1,3 +1,16 @@
+const showingId = getQueryParam('id'); // Get the movie ID from the URL
+
+if (showingId) {
+    loadSeatsForShowing(showingId);
+} else {
+    document.getElementById('movieDetails').innerHTML = '<p>No showing ID selected</p>';
+}
+
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
 let selectedSeatIds = [];
 
 // Function to load all seats for a specific showing
@@ -91,7 +104,6 @@ function saveBooking() {
         return;
     }
 
-    const showingId = 1; // Replace with the actual showing ID or fetch it dynamically
     createBooking(showingId, email, selectedSeatIds);
 }
 
@@ -128,5 +140,4 @@ function createBooking(showingId, email, seatIds) {
         });
 }
 
-// Load seats for the initial showing (example: showingId = 1)
-loadSeatsForShowing(2);
+
