@@ -21,9 +21,10 @@ body {
     display: flex;
     flex-direction: column; /* Læg knap-grupperne vertikalt */
     align-items: center; /* Center knap-grupperne */
-    background-color: #f0f0f0; /* Lys baggrundsfarve for knap-containeren */
+    background-color: #383838; /* Lys baggrundsfarve for knap-containeren */
     padding: 20px; /* Indvendig padding */
     border-radius: 40px; /* Runde hjørner for containeren */
+    width: 600px;
 
 }
 
@@ -54,21 +55,23 @@ button:hover {
 
 /* Modal styling */
 .modal-header {
-    background-color: #343a40; /* Mørk baggrund for header i modal */
-    color: white; /* Hvid tekst i modal header */
+    background-color: #343a40;
+    color: white;
 }
 
 .modal-body {
     padding: 20px;
 }
 .button.modal-button {
-    background-color: white !important;
-    color: black !important;
+    background-color: white;
+    color: black;
 }
 form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
+.form-label {
+    color: black;
+}
 

@@ -4,60 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Film Redigering</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <link rel="stylesheet" href="../css/edit-moviepage.css">
     <link rel="stylesheet" href="../css/header.css">
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50%;
-            background-color: white;
-            padding: 20px;
-            border: 1px solid #888;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
 
-        .modal-header, .modal-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-footer {
-            margin-top: 20px;
-        }
-
-        .modal-close {
-            cursor: pointer;
-            color: red;
-        }
-
-        .modal input, .modal textarea {
-            width: 100%;
-            margin: 10px 0;
-            padding: 8px;
-        }
-
-        .modal-open {
-            display: block;
-        }
-    </style>
 </head>
 <body>
-<div>
-    <div class="header-dark">
-        <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-            <div class="container"><a class="navbar-brand" href="landing-page.html">KinoXP</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse"
-                     id="navcol-1">
-                </div>
-            </div></nav>
-    </div>
+<div class="header">
+    <a href="landing-page.html" class="logo">KinoXP</a>
 </div>
 <label for="searched-movie">Hvilken film vil du søge efter?</label>
 <input type="text" id="searched-movie" required>
@@ -100,11 +54,6 @@
 
              <label for="movie-release-date">Release Date:</label>
             <input type="text" id="movie-release-date" name="releaseDate" required>
-
-
-
-
-
 
         </form>
     </div>
