@@ -129,4 +129,4 @@ function createBooking(showingId, email, seatIds) {
 }
 
 // Load seats for the initial showing (example: showingId = 1)
-loadSeatsForShowing(1);
+loadSeatsForShowing(2);
