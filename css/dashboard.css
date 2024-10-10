@@ -66,6 +66,10 @@ button:hover {
     background-color: white;
     color: black;
 }
+.btn-primary {
+    background-color: #ffcc00;
+    color: black;
+}
 form {
     display: flex;
     flex-direction: column;
