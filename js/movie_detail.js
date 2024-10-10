@@ -45,8 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (data && data.length > 0) {
                     data.forEach(showing => {
                         const listItem = document.createElement("li");
-                        // Ensure to format the showing details correctly
-                        listItem.textContent = `Theatre: ${showing.theatre.theatreId}, Date: ${showing.dateTime}`; // Adjust according to your showing properties
+                        const dateTime = new Date(showing.dateTime);
+                        const day = dateTime.getDate();
+                        const month = dateTime.getMonth() + 1 //Starter fra 0 så der tilføjes 1;
+                        const time = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        listItem.textContent = `${day}/${month} - ${time}, Sal: ${showing.theatre.theatreId}`;
                         showingsList.appendChild(listItem);
                     });
                 } else {
