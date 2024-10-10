@@ -1,3 +1,26 @@
+// Check if admin is logged in
+async function checkAdminSession() {
+    try {
+        const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+            method: "GET",
+            credentials: "include" // Include credentials for session management
+        });
+
+        if (!response.ok) {
+            // If the response is not OK, redirect to login
+            window.location.href = "../html/Login.html";
+        }
+    } catch (error) {
+        console.error("Error checking admin session:", error);
+        window.location.href = "../html/Login.html"; // Redirect on error
+    }
+}
+
+// Call the session check on page load
+document.addEventListener("DOMContentLoaded", function() {
+    checkAdminSession();
+});
+
 document.getElementById("create-admin-btn").addEventListener("click", function() {
     document.getElementById("create-admin-modal").style.display = "block";
 });
