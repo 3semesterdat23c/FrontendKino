@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Loop through the showings and add them to the list
                 if (data && data.length > 0) {
+                    data.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
                     data.forEach(showing => {
                         const listItem = document.createElement("li");
                         const dateTime = new Date(showing.dateTime);
