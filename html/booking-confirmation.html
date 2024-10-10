@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="da">
 <head>
+    <meta charset="UTF-8">
     <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/booking-confirmation.css">
+
 </head>
 <body>
-<h1>Thank you for your booking!</h1>
+<div class="header">
+    <a href="landing-page.html" class="logo">KinoXP</a>
+</div>
+<h1>Tak for din reservation!!!</h1>
 <p id="booking-id"></p>
 <p id="theatre-id"></p>
 <p id="movie-title"></p>
@@ -17,11 +24,11 @@
 
     if (bookingDetails) {
         // Display Booking ID
-        document.getElementById('booking-id').textContent = `Booking ID: ${bookingDetails.bookingId}`;
+        document.getElementById('booking-id').textContent = `Dit reservationsnummer: ${bookingDetails.bookingId}`;
 
         // Display Theatre ID
         if (bookingDetails.showing && bookingDetails.showing.theatre) {
-            document.getElementById('theatre-id').textContent = `Theatre ID: ${bookingDetails.showing.theatre.theatreId}`;
+            document.getElementById('theatre-id').textContent = `Sal: ${bookingDetails.showing.theatre.theatreId}`;
         } else {
             document.getElementById('theatre-id').textContent = 'Theatre details unavailable.';
         }
@@ -29,19 +36,34 @@
         // Display the movie title
         const showing = bookingDetails.showing;
         if (showing && showing.movie) {
-            document.getElementById('movie-title').textContent = `Movie: ${showing.movie.title}`;
+            document.getElementById('movie-title').textContent = `Film: ${showing.movie.title}`;
         } else {
             document.getElementById('movie-title').textContent = 'Movie details are unavailable.';
         }
 
-        // Display the reserved seats
+        // Display the reserved seats in a more readable format
         if (bookingDetails.seats && bookingDetails.seats.length > 0) {
-            const seats = bookingDetails.seats
-                .map(seat => `Row ${seat.rowNumber}, Seat ${seat.seatNumber}`)
-                .join(', ');
-            document.getElementById('reserved-seats').textContent = `Seats: ${seats}`;
+            const seatsPerRow = {};
+
+            // Group seats by row
+            bookingDetails.seats.forEach(seat => {
+                if (!seatsPerRow[seat.rowNumber]) {
+                    seatsPerRow[seat.rowNumber] = [];
+                }
+                seatsPerRow[seat.rowNumber].push(seat.seatNumber);
+            });
+
+            // Create a formatted string for each row
+            let formattedSeats = 'Dine sæder:<br>';
+            for (let row in seatsPerRow) {
+                // Sort the seats for each row
+                seatsPerRow[row].sort((a, b) => a - b);
+                formattedSeats += `Række ${row}: Sæde ${seatsPerRow[row].join(', ')}<br>`;
+            }
+
+            document.getElementById('reserved-seats').innerHTML = formattedSeats;
         } else {
-            document.getElementById('reserved-seats').textContent = 'No seats were reserved.';
+            document.getElementById('reserved-seats').textContent = 'Ingen sæder var reserveret';
         }
 
         // Optionally, clear the booking details from local storage
@@ -49,6 +71,7 @@
     } else {
         document.body.innerHTML = '<p>Error: No booking details found.</p>';
     }
+
 </script>
 </body>
 </html>
