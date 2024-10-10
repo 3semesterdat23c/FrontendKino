@@ -74,6 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         const month = dateTime.getMonth() + 1 //Starter fra 0 så der tilføjes 1;
                         const time = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                         listItem.textContent = `${day}/${month} - ${time}, Sal: ${showing.theatre.theatreId}`;
+
+                        // Add click event to change the location
+                        listItem.addEventListener('click', function() {
+                            window.location.href = `bio.html?id=${showing.showingId}`;
+                        });
+
                         showingsList.appendChild(listItem);
                     });
                 } else {
