@@ -13,7 +13,6 @@ const genreInput = document.getElementById("movie-genre");
 const runtimeInput = document.getElementById("movie-runtime");
 const movieposterInput = document.getElementById("movie-poster");
 const movieImdbInput = document.getElementById("movie-Imdb-rating");
-const movieImdbIDinput = document.getElementById("movie-Imdb-ID");
 const movieActorsInput = document.getElementById("movie-actors");
 const movieDirectorsInput = document.getElementById("movie-directors");
 const movieRelaseDateInput = document.getElementById("movie-release-date");
@@ -50,7 +49,6 @@ searchButton.addEventListener("click", function () {
                     movieActorsInput.value = movie.actors.map(a => a.fullName).join(', ');
                     movieposterInput.value = movie.poster;
                     movieImdbInput.value = movie.imdbRating;
-                    movieImdbIDinput.value = movie.imdbID;
                     movieRelaseDateInput.value = movie.released;
                     // Open the modal
                     modal.classList.add("modal-open");

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Confirmation</title>
+</head>
+<body>
+<h1>Thank you for your booking!</h1>
+<p id="booking-id"></p>
+<p id="theatre-id"></p>
+<p id="movie-title"></p>
+<p id="reserved-seats"></p>
+
+<script>
+    // Retrieve booking details from local storage
+    const bookingDetails = JSON.parse(localStorage.getItem('bookingDetails'));
+    console.log('bookingDetails:', bookingDetails);
+
+    if (bookingDetails) {
+        // Display Booking ID
+        document.getElementById('booking-id').textContent = `Booking ID: ${bookingDetails.bookingId}`;
+
+        // Display Theatre ID
+        if (bookingDetails.showing && bookingDetails.showing.theatre) {
+            document.getElementById('theatre-id').textContent = `Theatre ID: ${bookingDetails.showing.theatre.theatreId}`;
+        } else {
+            document.getElementById('theatre-id').textContent = 'Theatre details unavailable.';
+        }
+
+        // Display the movie title
+        const showing = bookingDetails.showing;
+        if (showing && showing.movie) {
+            document.getElementById('movie-title').textContent = `Movie: ${showing.movie.title}`;
+        } else {
+            document.getElementById('movie-title').textContent = 'Movie details are unavailable.';
+        }
+
+        // Display the reserved seats
+        if (bookingDetails.seats && bookingDetails.seats.length > 0) {
+            const seats = bookingDetails.seats
+                .map(seat => `Row ${seat.rowNumber}, Seat ${seat.seatNumber}`)
+                .join(', ');
+            document.getElementById('reserved-seats').textContent = `Seats: ${seats}`;
+        } else {
+            document.getElementById('reserved-seats').textContent = 'No seats were reserved.';
+        }
+
+        // Optionally, clear the booking details from local storage
+        localStorage.removeItem('bookingDetails');
+    } else {
+        document.body.innerHTML = '<p>Error: No booking details found.</p>';
+    }
+</script>
+</body>
+</html>

@@ -6,6 +6,7 @@ function loadSeatsForShowing(showingId) {
     fetch(`http://localhost:8080/showing/${showingId}/seats`)
         .then(response => response.json())
         .then(data => {
+            console.log('Data recieved from server:', data)
             const { bookedSeats, allSeats, seatRows, seatsPerRow } = data;  // Destructure the data
             renderSeats(allSeats, bookedSeats, seatRows, seatsPerRow);      // Pass seatRows and seatsPerRow to the render function
         })
@@ -112,12 +113,14 @@ function createBooking(showingId, email, seatIds) {
             if (!response.ok) {
                 return response.text().then(text => { throw new Error(text); });
             }
-            return response.text();
+            return response.json();
         })
         .then(responseData => {
             alert('Booking gemt!');
+            localStorage.setItem('bookingDetails', JSON.stringify(responseData));
+            window.location.href= "../html/booking-confirmation.html"
             // Update the UI by calling loadSeatsForShowing
-            loadSeatsForShowing(showingId); // Refresh the seat display
+            //loadSeatsForShowing(showingId); // Refresh the seat display
         })
         .catch(error => {
             console.error('Error:', error);
@@ -126,4 +129,4 @@ function createBooking(showingId, email, seatIds) {
 }
 
 // Load seats for the initial showing (example: showingId = 1)
-loadSeatsForShowing(1);
+loadSeatsForShowing(2);
