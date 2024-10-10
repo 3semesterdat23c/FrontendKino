@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Details</title>
+    <title>Filminformation</title>
+  <link rel="stylesheet" href="../css/header.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/movie_details.css">
+    <link rel="stylesheet" href="../css/movie_detail.css">
 
 </head>
 <body>
-<button type="button" class="btn btn-primary mb-3" onclick="window.location.href='landing-page.html'">Til forsiden</button>
-
+<div class="header">
+    <a href="landing-page.html" class="logo">KinoXP</a>
+</div>
 <div class="container">
     <div id="movieDetails">
-        <h2>Movie Details</h2>
+        <h2>Informationer om filmen</h2>
         <p>Title: <span id="movieTitle"></span></p>
         <p>Release Year: <span id="releaseYear"></span></p>
         <img id="moviePoster" alt="Movie Poster" style="width:200px;"/>
     </div>
 
-    <h2>Showings</h2>
+    <h2>Filmvisninger</h2>
     <ul id="showingsList">
         <!-- Dynamically populated showings will appear here -->
     </ul>
 
     <!-- Button to trigger modal -->
-    <button id="addShowingButton" class="btn-primary">Add New Showing</button>
+    <button id="addShowingButton" class="btn-primary">Tilføj ny filmvisning</button>
 
     <!-- Modal -->
     <div id="showingModal" class="modal">
@@ -33,17 +35,20 @@
             <span class="close">&times;</span>
             <h2>Add New Showing</h2>
             <form id="addShowingForm">
-                <label for="theatreId">Theatre ID:</label>
-                <input type="text" id="theatreId" name="theatreId" required>
+      <label for="theatreId">Theatre ID:</label>
+                <select name="theatreId" id="theatreId">
+            </select>
 
-                <label for="adminId">Admin ID:</label>
-                <input type="text" id="adminId" name="adminId" required>
 
-                <label for="dateTime">Start Date and Time:</label>
+                <label for="adminId">Movie operator:</label>
+                <select name="adminId" id="adminId">
+            </select>
+
+                <label for="dateTime">Start dato og tid:</label>
                 <input type="datetime-local" id="dateTime" name="dateTime" required>
 
 
-                <button type="submit">Add Showing</button>
+                <button type="submit">Tilføj visning</button>
             </form>
             <div id="responseMessage"></div>
         </div>

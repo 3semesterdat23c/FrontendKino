@@ -1,10 +1,10 @@
-
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
+    background-color: #1a1a1a;
+    color: #fff;
+    margin: 0;
+    padding: 0;
 }
-
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -13,7 +13,7 @@ body {
 
 .search-bar input {
     padding: 10px;
-    font-size: 16px;
+    font-size: 160px;
     width: 80%;
 }
 
@@ -64,3 +64,91 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+ .modal {
+     display: none;
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     width: 50%;
+     background-color: white;
+     padding: 20px;
+     border: 1px solid #888;
+     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+     z-index: 1000;
+ }
+
+.modal-header, .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-footer {
+    margin-top: 20px;
+}
+
+.modal-close {
+    cursor: pointer;
+    color: red;
+}
+
+.modal input, .modal textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+}
+
+.modal-open {
+    display: block;
+}
+
+/* Styling for søgefeltet og søgeknappen */
+#searched-movie {
+    width: 300px; /* Fast bredde */
+    padding: 10px; /* Indvendig padding for at gøre tekstfeltet større */
+    border: 2px solid #ccc; /* Lys grå kant */
+    border-radius: 20px; /* Afrundede hjørner */
+    outline: none; /* Fjern standard blå outline */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Glidende overgang for hover-effekt */
+}
+
+#searched-movie:focus {
+    border-color: #007bff; /* Skift kantfarve ved fokus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Tilføj en blød skygge ved fokus */
+}
+
+#search-button {
+    background-color: #007bff; /* Blå baggrund */
+    color: white; /* Hvid tekst */
+    border: none; /* Fjern kant */
+    border-radius: 20px; /* Afrundede hjørner */
+    padding: 10px 20px; /* Polstring for større knap */
+    cursor: pointer; /* Pointer ved hover */
+    margin-left: 10px; /* Lidt afstand mellem søgefeltet og knappen */
+    transition: background-color 0.3s; /* Glidende overgang for hover-effekt */
+}
+
+#search-button:hover {
+    background-color: #0056b3; /* Mørkere blå ved hover */
+}
+
+/* Styling for tilbage til dashboard knappen */
+.btn-primary {
+    background-color: #343a40; /* Mørk baggrund */
+    color: white; /* Hvid tekst */
+    border: none;
+    border-radius: 20px; /* Afrundede hjørner */
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px; /* Lidt afstand til toppen */
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #1d2124; /* Mørkere baggrund ved hover */
+}
+
+
+

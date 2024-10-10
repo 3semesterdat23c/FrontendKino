@@ -1,0 +1,27 @@
+.header {
+    overflow: hidden;
+    background-color: #1a1a1a;
+    padding: 20px;
+    width: 100%;
+}
+
+.header a {
+    color: #ffcc00;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.header a:hover {
+    background-color: #000000;
+    color: #ffcc00;
+}
