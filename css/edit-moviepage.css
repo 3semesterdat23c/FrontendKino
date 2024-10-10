@@ -18,6 +18,7 @@ body {
 }
 
 .search-bar button {
+
     padding: 10px;
     font-size: 16px;
 }
@@ -37,9 +38,10 @@ body {
     z-index: 1;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     overflow: auto;
+    border-radius: 5%;
     background-color: rgba(0,0,0,0.5);
 }
 
@@ -105,6 +107,7 @@ body {
 }
 
 /* Styling for søgefeltet og søgeknappen */
+
 #searched-movie {
     width: 300px; /* Fast bredde */
     padding: 10px; /* Indvendig padding for at gøre tekstfeltet større */
@@ -115,13 +118,13 @@ body {
 }
 
 #searched-movie:focus {
-    border-color: #007bff; /* Skift kantfarve ved fokus */
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Tilføj en blød skygge ved fokus */
+    border-color: #ffffff; /* Skift kantfarve ved fokus */
+    box-shadow: 0 0 8px rgb(255, 204, 0); /* Tilføj en blød skygge ved fokus */
 }
 
 #search-button {
-    background-color: #007bff; /* Blå baggrund */
-    color: white; /* Hvid tekst */
+    background-color: #ffcc00;
+    color: black;
     border: none; /* Fjern kant */
     border-radius: 20px; /* Afrundede hjørner */
     padding: 10px 20px; /* Polstring for større knap */
@@ -131,7 +134,7 @@ body {
 }
 
 #search-button:hover {
-    background-color: #0056b3; /* Mørkere blå ved hover */
+    background-color: #ffffff; /* Mørkere blå ved hover */
 }
 
 /* Styling for tilbage til dashboard knappen */
