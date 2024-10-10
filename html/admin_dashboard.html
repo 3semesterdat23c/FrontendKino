@@ -3,71 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/header.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/header.css">
 </head>
 <body>
-<div>
-    <div class="header-dark">
-        <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-            <div class="container"><a class="navbar-brand" href="landing-page.html">KinoXP</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse"
-                     id="navcol-1">
-                </div>
-            </div></nav>
-    </div>
+<div class="header">
+    <a href="landing-page.html" class="logo">KinoXP</a>
 </div>
 <p> </p>
 <p> </p>
-<h2>Welcome to the Admin Dashboard</h2>
+<h2>Velkommen til admin dashboardet</h2>
 <p> </p>
 <div class="button-container">
     <div class="button-container">
         <div class="button-group">
-            <button id="create-admin-btn">Create New Admin</button>
-            <button id="edit-movie-btn">Edit Movie</button>
-            <button id="create-theatre">Create theatre</button>
+            <button id="create-admin-btn">Opret admin</button>
+            <button id="edit-movie-btn">Rediger film</button>
+            <button id="create-theatre">Opret sal</button>
 
         </div></div>
         <div class="button-group">
-            <button id="create-showing-btn">Create new showing</button>
-
-        <button type="button" data-bs-toggle="modal" data-bs-target="#movie-modal">
-            Add Movie
-        </button>
-
-
-<div id="create-admin-modal" style="display: none;">
-    <form id="create-admin-form">
-        <label for="new-username">Username:</label>
-        <input type="text" id="new-username" required>
-        <label for="new-password">Password:</label>
-        <input type="password" id="new-password" required>
-        <label for="new-fullname">Full Name:</label>
-        <input type="text" id="new-fullname" required>
-        <button type="submit">Register Admin</button>
-    </form>
-</div>
+            <button id="create-showing-btn">Opret filmfremvisning</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#movie-modal">Tilføj film</button>
         </div>
+    <div id="create-admin-modal" style="display: none;">
+        <form id="create-admin-form">
+            <label for="new-username">Brugernavn:</label>
+            <input type="text" id="new-username" required>
+            <label for="new-password">Password:</label>
+            <input type="password" id="new-password" required>
+            <label for="new-fullname">Fulde navn:</label>
+            <input type="text" id="new-fullname" required>
+            <button type="submit">Registrer Admin</button>
+        </form>
+    </div>
 <div class="modal fade" id="movie-modal" tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Add Movie</h5>
+                <h5 class="modal-title" id="modal-title">Tilføj film</h5>
                 <button type="modal-button" class="modal-button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="movie-form">
                     <div class="mb-3">
-                        <label for="input-title" class="form-label">Title</label>
+                        <label for="input-title" class="form-label">Titel</label>
                         <input type="text" class="form-control" id="input-title" name="title" required>
                     </div>
                     <div class="mb-3">
-                        <label for="input-year" class="form-label">Year</label>
+                        <label for="input-year" class="form-label">År</label>
                         <input type="text" class="form-control" id="input-year" name="year">
                     </div>
                     <div class="mb-3">
@@ -83,15 +69,15 @@
                         <input type="text" class="form-control" id="input-genre" name="genre">
                     </div>
                     <div class="mb-3">
-                        <label for="input-director" class="form-label">Director</label>
+                        <label for="input-director" class="form-label">Instruktør</label>
                         <input type="text" class="form-control" id="input-director" name="director">
                     </div>
                     <div class="mb-3">
-                        <label for="input-actors" class="form-label">Actors</label>
+                        <label for="input-actors" class="form-label">Skuespillere</label>
                         <input type="text" class="form-control" id="input-actors" name="actors">
                     </div>
                     <div class="mb-3">
-                        <label for="input-poster" class="form-label">Poster URL</label>
+                        <label for="input-poster" class="form-label">Plakat URL</label>
                         <input type="text" class="form-control" id="input-poster" name="poster">
                     </div>
                     <div class="mb-3">
@@ -114,15 +100,13 @@
 
 <div id="create-theatre-modal" style="display: none;">
     <form id="create-theatre-form">
-        <label for="seats">Seats</label>
+        <label for="seats">Sæder</label>
         <input type="number" id="seats" required>
-        <label for="rows">Rows</label>
+        <label for="rows">Rækker</label>
         <input type="number" id="rows" required>
-        <button type="submit">Create Theatre</button>
+        <button type="submit">Opret sal</button>
     </form>
 </div>
-
-
 <script src="../js/dashboard.js" type="module"></script>
 </div>
 </body>

@@ -82,4 +82,5 @@ img {
     .modal, .modal-content {
         z-index: 9; /* Sænk z-index til under headerens */
     }
+
 }
