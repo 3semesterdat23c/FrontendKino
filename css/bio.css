@@ -108,3 +108,54 @@ body {
     align-items: center;
     margin-right: 20px;
 }
+
+/* Styling for save booking button */
+.form-container button {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 10px;
+}
+
+.form-container button:hover {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+/* Styling for form-container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333333;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+/* Styling for email input */
+.form-container input[type="email"] {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-size: 1.2em;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-container input[type="email"]:focus {
+    border-color: #ffcc00;
+    box-shadow: 0 0 8px rgba(255, 204, 0, 0.8);
+}
