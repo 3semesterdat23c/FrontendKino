@@ -40,6 +40,15 @@ function renderSeats(allSeats, bookedSeats, seatRows, seatsPerRow) {
 
     // Loop over all rows and seats per row
     for (let rowIndex = 1; rowIndex <= seatRows; rowIndex++) {
+        const rowContainer = document.createElement('div');
+        rowContainer.classList.add('row-container');
+
+        // Add row number element on the left
+        const rowNumberElement = document.createElement('div');
+        rowNumberElement.classList.add('row-number');
+        rowNumberElement.textContent = `Række ${rowIndex}`;
+        rowContainer.appendChild(rowNumberElement);
+
         const rowElement = document.createElement('div');
         rowElement.classList.add('row');  // Create a new row for each rowIndex
 
@@ -50,8 +59,8 @@ function renderSeats(allSeats, bookedSeats, seatRows, seatsPerRow) {
             seatElement.classList.add('seat');  // Set default seat class
             seatElement.dataset.seatId = seat.seatId;
 
-            // Set the text to display row and seat number
-            seatElement.innerText = `${seat.rowNumber}-${seat.seatNumber}`;
+            // Set the text to display only the seat number
+            seatElement.innerText = `${seat.seatNumber}`;
 
             // Check if the seat is in the bookedSeats list
             if (isSeatBooked(seat, bookedSeats)) {
@@ -64,7 +73,8 @@ function renderSeats(allSeats, bookedSeats, seatRows, seatsPerRow) {
 
             rowElement.appendChild(seatElement);
         }
-        container.appendChild(rowElement);  // Append the row to the container after completing all seats in the row
+        rowContainer.appendChild(rowElement);
+        container.appendChild(rowContainer);  // Append the row to the container after completing all seats in the row
     }
 
     // Update selected seats visually
@@ -75,6 +85,7 @@ function renderSeats(allSeats, bookedSeats, seatRows, seatsPerRow) {
         }
     });
 }
+
 
 // Function to handle seat selection
 function selectSeat(seatId) {

@@ -19,10 +19,6 @@ body {
     color: #000;
 }
 
-.form-container {
-    margin-bottom: 20px;
-}
-
 .container {
     display: flex;
     flex-direction: column;
@@ -30,10 +26,21 @@ body {
     margin-bottom: 20px;
 }
 
+.row-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.row-number {
+    color: #ffcc00;
+    margin-right: 15px; /* Add some spacing */
+    font-weight: bold;
+}
+
 .row {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
 }
 
 .seat {
@@ -43,6 +50,9 @@ body {
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+    line-height: 40px; /* Align seat number vertically */
+    font-weight: bold;
     transition: background-color 0.3s;
 }
 
@@ -56,6 +66,7 @@ body {
     background-color: orange; /* Orange for selected seats */
 }
 
+/* Legend styles */
 .legend {
     display: flex;
     justify-content: center;
