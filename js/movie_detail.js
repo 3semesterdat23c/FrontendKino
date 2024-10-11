@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Update the DOM with movie details
                     document.getElementById("movieTitle").textContent = movie.title || 'N/A';
                     document.getElementById("releaseYear").textContent = movie.year || 'N/A';
+                    document.getElementById("runTime").textContent = movie.runtime || 'N/A';
                     document.getElementById("moviePoster").src = movie.poster || 'default_poster.jpg';
 
                     if (movie.actors && Array.isArray(movie.actors)) {
