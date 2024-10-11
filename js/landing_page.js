@@ -1,5 +1,5 @@
 
-fetch('http://localhost:8080/movies')
+fetch('https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/movies')
     .then(response => response.json())
     .then(data => {
         const moviesGrid = document.getElementById('moviesGrid');
@@ -32,7 +32,7 @@ document.getElementById("admin-dashboard-btn").addEventListener("click", async f
 
 async function userIsAdmin() {
     try {
-        const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+        const response = await fetch("https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/admin/check-admin-presence", {
             method: "GET",
             credentials: "include" // Include credentials for session management
         });

@@ -1,7 +1,7 @@
 // Check if admin is logged in
 async function checkAdminSession() {
     try {
-        const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+        const response = await fetch("https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/admin/check-admin-presence", {
             method: "GET",
             credentials: "include" // Include credentials for session management
         });
@@ -27,7 +27,7 @@ document.getElementById("create-admin-btn").addEventListener("click", function()
 
 document.getElementById("logout-btn").addEventListener("click", async function () {
     try {
-        const response = await fetch("http://localhost:8080/admin/logout", {
+        const response = await fetch("https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/admin/logout", {
             method: "GET",
             credentials: "include" // Include credentials for session management
         });
@@ -46,7 +46,7 @@ document.getElementById("create-admin-form").addEventListener("submit", async fu
     const fullName = document.getElementById("new-fullname").value;
 
     try {
-        const response = await fetch("http://localhost:8080/admin/register", {
+        const response = await fetch("https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/admin/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -85,7 +85,7 @@ document.getElementById("create-theatre-form").addEventListener("submit", async 
     const seatsPerRow = document.getElementById("seats").value;
 
     try {
-        const response = await fetch("http://localhost:8080/theatre/create", {
+        const response = await fetch("https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/theatre/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -140,7 +140,7 @@ document.getElementById('btn-save-movie').addEventListener('click', function () 
     // Log the movie object to debug
     console.log("Submitting movie:", movie);
 
-    fetch('http://localhost:8080/movies', {
+    fetch('https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/movies', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

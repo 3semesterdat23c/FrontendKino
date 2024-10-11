@@ -16,7 +16,7 @@ let selectedSeatIds = [];
 // Function to load all seats for a specific showing
 function loadSeatsForShowing(showingId) {
     // Fetch the seats data, including seatRows and seatsPerRow
-    fetch(`http://localhost:8080/showing/${showingId}/seats`)
+    fetch(`https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/showing/${showingId}/seats`)
         .then(response => response.json())
         .then(data => {
             console.log('Data recieved from server:', data)
@@ -141,7 +141,7 @@ function createBooking(showingId, email, seatIds) {
         return;
     }
 
-    fetch(`http://localhost:8080/showing/booking/${showingId}?email=${encodeURIComponent(email)}`, {
+    fetch(`https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/showing/booking/${showingId}?email=${encodeURIComponent(email)}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -178,7 +178,7 @@ document.getElementById("admin-dashboard-btn").addEventListener("click", async f
 
 async function userIsAdmin() {
     try {
-        const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+        const response = await fetch("https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/admin/check-admin-presence", {
             method: "GET",
             credentials: "include" // Include credentials for session management
         });

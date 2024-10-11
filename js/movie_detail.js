@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to fetch movie details from the backend
     function fetchMovieDetails(movieId) {
-        fetch(`http://localhost:8080/movie/${movieId}`)
+        fetch(`https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/movie/${movieId}`)
             .then(response => response.json())
             .then(movie => {
                 if (movie) {
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Updated fetchShowings function to format date, time, and theatre
     // Updated fetchShowings function to format date, time, and theatre
     function fetchShowings(movieId) {
-        fetch(`http://localhost:8080/showing/showings/${movieId}`)
+        fetch(`https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/showing/showings/${movieId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // Send a POST request to the backend to create a new showing
-        fetch("http://localhost:8080/showing/create", {
+        fetch("https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/showing/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -167,7 +167,7 @@ function populateTheatreDropdown() {
     const theatreSelect = document.getElementById('theatreId');
 
     // Fetch the list of theatres from the backend
-    fetch('http://localhost:8080/showing/theatres')
+    fetch('https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/showing/theatres')
         .then(response => response.json())
         .then(theatres => {
             theatreSelect.innerHTML = '';
@@ -194,7 +194,7 @@ function populateAdminDropdown() {
     const adminSelect = document.getElementById('adminId');
 
 
-    fetch('http://localhost:8080/showing/admins')
+    fetch('https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/showing/admins')
         .then(response => response.json())
         .then(admins => {
             adminSelect.innerHTML = '';
@@ -233,7 +233,7 @@ document.getElementById("admin-dashboard-btn").addEventListener("click", async f
 
 async function userIsAdmin() {
     try {
-        const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+        const response = await fetch("https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/admin/check-admin-presence", {
             method: "GET",
             credentials: "include" // Include credentials for session management
         });

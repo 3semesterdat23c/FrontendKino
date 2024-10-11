@@ -6,7 +6,7 @@ document.getElementById("login-form").addEventListener("submit", async function 
 
     try {
         // Ensure the path is correct
-        const response = await fetch("http://localhost:8080/admin/login", {
+        const response = await fetch("https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/admin/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

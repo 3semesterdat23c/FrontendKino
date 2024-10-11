@@ -18,7 +18,7 @@ const movieActorsInput = document.getElementById("movie-actors");
 const movieDirectorsInput = document.getElementById("movie-directors");
 const movieRelaseDateInput = document.getElementById("movie-release-date");
 let currentMovieId = null; // To keep track of the current movie
-const backendUrl = 'http://localhost:8080'; // Replace with your backend's URL and port
+const backendUrl = 'https://gaakma-cferd8embuayf3e7.northeurope-01.azurewebsites.net/'; // Replace with your backend's URL and port
 
 searchButton.addEventListener("click", function () {
     const movieTitle = searchInput.value.trim();
