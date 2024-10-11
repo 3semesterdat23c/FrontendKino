@@ -21,5 +21,24 @@ fetch('http://localhost:8080/movies')
     })
     .catch(error => console.error('Error fetching movies:', error));
 
+document.getElementById("admin-dashboard-btn").addEventListener("click", async function () {
+    const isAdmin = await userIsAdmin();
+    if (isAdmin) {
+        window.location.href = "admin_dashboard.html";
+    } else {
+        window.location.href = "Login.html";
+    }
+});
 
-
+async function userIsAdmin() {
+    try {
+        const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+            method: "GET",
+            credentials: "include" // Include credentials for session management
+        });
+        return response.ok;
+    } catch (error) {
+        console.error("Error checking admin session:", error);
+        return false;
+    }
+}
