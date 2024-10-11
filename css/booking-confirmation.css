@@ -12,25 +12,32 @@ body {
     min-height: 100vh;
 }
 
-/* Style for the header */
-.header {
-    width: 100%;
-    background-color: #333;
-    padding: 10px 0;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+/* Styling for the button */
+button {
+    font-size: 1.5em;
+    color: #1a1a1a;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 20px 0;
 }
 
-.header a.logo {
-    font-size: 2em;
-    font-weight: bold;
-    color: #ffcc00;
+/* Styling for the anchor tag inside the button */
+button a {
     text-decoration: none;
+    color: inherit;
 }
 
-.header a.logo:hover {
+/* Button hover effect */
+button:hover {
+    background-color: #e6b800;
     color: #fff;
 }
+
 
 /* Styling the main content */
 h1 {
