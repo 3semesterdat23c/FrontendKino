@@ -79,3 +79,21 @@ form {
     color: black;
 }
 
+#logout-btn {
+    background-color: #d9534f; /* Bootstrap red */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#logout-btn:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
+#logout-btn:active {
+    background-color: #ac2925; /* Even darker red when active */
+}
