@@ -83,6 +83,80 @@
         document.body.innerHTML = '<p>Error: No booking details found.</p>';
     }
 
+    document.getElementById("admin-dashboard-btn").addEventListener("click", async function () {
+        const isAdmin = await userIsAdmin();
+        if (isAdmin) {
+            window.location.href = "admin_dashboard.html";
+        } else {
+            window.location.href = "Login.html";
+        }
+    });
+
+    async function userIsAdmin() {
+        try {
+            const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+                method: "GET",
+                credentials: "include" // Include credentials for session management
+            });
+            return response.ok;
+        } catch (error) {
+            console.error("Error checking admin session:", error);
+            return false;
+        }
+    }
+
 </script>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container {
+        flex: 1; /* Fylder den resterende plads mellem header og footer */
+    }
+
+    .footer {
+        background-color: #1a1a1a;
+        padding: 20px;
+        width: 100%;
+        color: #ffcc00;
+        text-align: center;
+        position: relative;
+        bottom: 0;
+        left: 0;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .footer-left,
+    .footer-right {
+        flex: 1;
+        padding: 10px;
+    }
+
+    .footer-left p,
+    .footer-right p {
+        margin: 8px 0;
+        font-size: 16px;
+    }
+
+    .footer-content a {
+        color: #ffcc00;
+        text-decoration: none;
+    }
+
+    .footer-content a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+</style>
 </body>
 </html>
