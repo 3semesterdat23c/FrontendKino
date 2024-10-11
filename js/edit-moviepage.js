@@ -101,7 +101,7 @@ saveButton.addEventListener("click", function (e) {
     } else {
         alert("Ingen film valgt til opdatering.");
     }
-;
+
 })
 deleteButton.addEventListener("click", function () {
     if (currentMovieId) {
@@ -123,3 +123,15 @@ deleteButton.addEventListener("click", function () {
         alert("Ingen film valgt til sletning.");
     }
 });
+
+const closeModalBtn = document.getElementById('close-modal');
+
+//til krydset i hjørnet
+closeModalBtn.addEventListener('click', () => {
+    document.getElementById('edit-movie-modal').classList.remove('modal-open');
+});
+//til annullerknappen i modalen:
+cancelButton.addEventListener('click', () => {
+    document.getElementById('edit-movie-modal').classList.remove('modal-open');
+});
+
