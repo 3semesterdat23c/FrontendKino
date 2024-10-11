@@ -25,6 +25,19 @@ document.getElementById("create-admin-btn").addEventListener("click", function()
     document.getElementById("create-admin-modal").style.display = "block";
 });
 
+document.getElementById("logout-btn").addEventListener("click", async function () {
+    try {
+        const response = await fetch("http://localhost:8080/admin/logout", {
+            method: "GET",
+            credentials: "include" // Include credentials for session management
+        });
+        if (response.ok) {
+            window.location.href = "landing-page.html";
+        }
+    } catch (error) {
+        console.error("Unable to log out.", error);
+    }})
+
 document.getElementById("create-admin-form").addEventListener("submit", async function(event) {
     event.preventDefault();
 
