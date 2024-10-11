@@ -1,0 +1,310 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.movie-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+}
+
+.details {
+    max-width: 700px;
+    background-color: black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.details h2 {
+    font-size: 2.5em;
+    color: #ffcc00;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.details p {
+    font-size: 1.3em;
+    line-height: 1.8;
+    margin: 12px 0;
+    color: #b3b3b3;
+}
+
+.highlight {
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .movie-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .poster img {
+        max-width: 250px;
+    }
+
+    .details h2 {
+        font-size: 2em;
+    }
+
+    .details p {
+        font-size: 1.1em;
+    }
+}
+
+/* Modal styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+/* Modal Content (the box) */
+.modal-content {
+    background-color: darkgrey;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px; /* Max width for the modal */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* The Close Button */
+.close {
+    color: #ffcc00;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%; /* Adjust modal width for smaller screens */
+    }
+}
+
+/* Style for dropdown menus */
+select {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for better clickability */
+    border: 1px solid #888; /* Border to match modal style */
+    border-radius: 5px; /* Rounded corners */
+    background-color: black; /* Background color */
+    color: white; /* Text color */
+    font-size: 1.2em; /* Increase font size */
+    margin-top: 10px; /* Spacing between elements */
+}
+
+/* Style for dropdown options */
+select option {
+    background-color: black; /* Option background */
+    color: white; /* Option text */
+}
+
+/* Hover effect for the select dropdown */
+select:hover {
+    border-color: #ffcc00; /* Highlight border on hover */
+}
+
+/* Focus style when the dropdown is clicked */
+select:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #ffcc00; /* Border color on focus */
+    box-shadow: 0 0 5px #ffcc00; /* Glowing effect on focus */
+}
+
+
+/* Style for the date selector */
+input[type="datetime-local"] {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for better usability */
+    border: 1px solid #888; /* Border to match modal style */
+    border-radius: 5px; /* Rounded corners */
+    background-color: black; /* Background color */
+    color: white; /* Text color */
+    font-size: 1.2em; /* Increase font size */
+    margin-top: 10px; /* Spacing between elements */
+}
+
+/* Hover effect for the date selector */
+input[type="datetime-local"]:hover {
+    border-color: #ffcc00; /* Highlight border on hover */
+}
+
+/* Focus style when the date selector is clicked */
+input[type="datetime-local"]:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #ffcc00; /* Border color on focus */
+    box-shadow: 0 0 5px #ffcc00; /* Glowing effect on focus */
+}
+
+/* Change the placeholder color for the date selector */
+input[type="datetime-local"]::placeholder {
+    color: #b3b3b3; /* Lighter color for the placeholder */
+}
+
+/* Style the calendar widget */
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Invert the color of the calendar icon to match dark mode */
+    cursor: pointer; /* Pointer cursor on the calendar icon */
+}
+/* Style for the button */
+button {
+    padding: 10px 20px; /* Juster padding for at give mindre knap */
+    font-size: 1em; /* Standard fontstørrelse */
+    background-color: #ffcc00; /* Baggrundsfarve */
+    color: black; /* Tekstfarve */
+    border: none; /* Fjern standard kant */
+    border-radius: 4px; /* Runde hjørner */
+    cursor: pointer; /* Pointer ved hover */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Blød overgang ved hover */
+    width: auto; /* Bredden bliver kun så stor som indholdet */
+    display: inline-block; /* Sørger for at knappen ikke strækker sig */
+    margin-top: 20px; /* Juster topmargen */
+}
+
+button:hover {
+    background-color: #e6b800; /* Mørkere gul ved hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Tilføj skygge ved hover */
+}
+
+button:focus {
+    outline: none; /* Fjern standard outline */
+    box-shadow: 0 0 10px #ffcc00; /* Glød ved fokus */
+}
+
+button:active {
+    background-color: #cc9900; /* Mørkere gul ved klik */
+    box-shadow: none; /* Fjern skygge ved klik */
+}
+
+/* Style for the showing list container */
+#showingsList {
+    list-style-type: none; /* Fjern bullet points */
+    padding: 0;
+    margin-top: 20px;
+}
+
+#showingsList li {
+    background-color: #333; /* Mørk baggrund */
+    color: white; /* Tekstfarve */
+    padding: 10px 15px; /* Juster padding */
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Brug flex for at opdele dato, tid og sal */
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style for showing labels and details */
+#showingsList li .label {
+    color: #b3b3b3; /* Lys grå til label */
+    font-size: 1em;
+    margin-right: 10px; /* Giver lidt afstand til dato og tid */
+}
+
+#showingsList li .date, #showingsList li .time, #showingsList li .theatre {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Format for dato, tid og sal */
+#showingsList li .date span,
+#showingsList li .time span {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-left: 5px;
+}
+
+#showingsList li .time span {
+    color: #ffcc00; /* Fremhæv tid i gul */
+}
+
+#showingsList li .theatre {
+    font-size: 1.2em;
+    color: #b3b3b3; /* Lysere farve til sal */
+}
+
+/* Hover effect for showings */
+#showingsList li:hover {
+    background-color: #ffcc00; /* Gul ved hover */
+    color: black;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Style for button */
+button {
+    padding: 8px 16px;
+    font-size: 1em;
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 200px; /* Reduceret knapbredde */
+    display: inline-block;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #e6b800;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px #ffcc00;
+}
+
+button:active {
+    background-color: #cc9900;
+    box-shadow: none;
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="../css/booking-confirmation.css">
+
+</head>
+<body>
+<button><a href="landing-page.html">Tilbage til forsiden</a></button>
+
+<h1>Tak for din reservation!!!</h1>
+<p id="booking-id"></p>
+<p id="theatre-id"></p>
+<p id="movie-title"></p>
+<p id="reserved-seats"></p>
+
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-left"> <p>Telefonnummer: +45 1234 5678</p>
+            <p>Hjemmeside: <a href="https://www.kinoxp.dk">www.kinoxp.dk</a></p>
+        </div>
+        <div class="footer-right">   <p>Adresse: KinoXP, Gade 123, 1000 København</p>
+            <p>Email: <a href="mailto:kontakt@kinoxp.dk">kontakt@kinoxp.dk</a></p>
+            <p><a id="admin-dashboard-btn" class="admin-login-link">Administrator dashboard</a></p>
+        </div></div>
+</div>
+
+<script>
+    // Retrieve booking details from local storage
+    const bookingDetails = JSON.parse(localStorage.getItem('bookingDetails'));
+    console.log('bookingDetails:', bookingDetails);
+
+    if (bookingDetails) {
+        // Display Booking ID
+        document.getElementById('booking-id').textContent = `Dit reservationsnummer: ${bookingDetails.bookingId}`;
+
+        // Display Theatre ID
+        if (bookingDetails.showing && bookingDetails.showing.theatre) {
+            document.getElementById('theatre-id').textContent = `Sal: ${bookingDetails.showing.theatre.theatreId}`;
+        } else {
+            document.getElementById('theatre-id').textContent = 'Theatre details unavailable.';
+        }
+
+        // Display the movie title
+        const showing = bookingDetails.showing;
+        if (showing && showing.movie) {
+            document.getElementById('movie-title').textContent = `Film: ${showing.movie.title}`;
+        } else {
+            document.getElementById('movie-title').textContent = 'Movie details are unavailable.';
+        }
+
+        // Display the reserved seats in a more readable format
+        if (bookingDetails.seats && bookingDetails.seats.length > 0) {
+            const seatsPerRow = {};
+
+            // Group seats by row
+            bookingDetails.seats.forEach(seat => {
+                if (!seatsPerRow[seat.rowNumber]) {
+                    seatsPerRow[seat.rowNumber] = [];
+                }
+                seatsPerRow[seat.rowNumber].push(seat.seatNumber);
+            });
+
+            // Create a formatted string for each row
+            let formattedSeats = 'Dine sæder:<br>';
+            for (let row in seatsPerRow) {
+                // Sort the seats for each row
+                seatsPerRow[row].sort((a, b) => a - b);
+                formattedSeats += `Række ${row}: Sæde ${seatsPerRow[row].join(', ')}<br>`;
+            }
+
+            document.getElementById('reserved-seats').innerHTML = formattedSeats;
+        } else {
+            document.getElementById('reserved-seats').textContent = 'Ingen sæder var reserveret';
+        }
+
+        // Optionally, clear the booking details from local storage
+        localStorage.removeItem('bookingDetails');
+    } else {
+        document.body.innerHTML = '<p>Error: No booking details found.</p>';
+    }
+
+    document.getElementById("admin-dashboard-btn").addEventListener("click", async function () {
+        const isAdmin = await userIsAdmin();
+        if (isAdmin) {
+            window.location.href = "admin_dashboard.html";
+        } else {
+            window.location.href = "Login.html";
+        }
+    });
+
+    async function userIsAdmin() {
+        try {
+            const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+                method: "GET",
+                credentials: "include" // Include credentials for session management
+            });
+            return response.ok;
+        } catch (error) {
+            console.error("Error checking admin session:", error);
+            return false;
+        }
+    }
+
+</script>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container {
+        flex: 1; /* Fylder den resterende plads mellem header og footer */
+    }
+
+    .footer {
+        background-color: #1a1a1a;
+        padding: 20px;
+        width: 100%;
+        color: #ffcc00;
+        text-align: center;
+        position: relative;
+        bottom: 0;
+        left: 0;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .footer-left,
+    .footer-right {
+        flex: 1;
+        padding: 10px;
+    }
+
+    .footer-left p,
+    .footer-right p {
+        margin: 8px 0;
+        font-size: 16px;
+    }
+
+    .footer-content a {
+        color: #ffcc00;
+        text-decoration: none;
+    }
+
+    .footer-content a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+</style>
+</body>
+</html>
