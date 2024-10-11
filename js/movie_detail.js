@@ -98,21 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const addShowingButton = document.getElementById("addShowingButton");
     const closeModal = document.querySelector(".close");
 
-    async function adminLoggedIn() {
-        try {
-            const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
-                method: "GET",
-                credentials: "include" // Include credentials for session management
-            });
-            return response.ok;
-        } catch (error) {
-            console.error("Error checking admin session:", error);
-            return false;
-        }
-    }
-
 // Show the button if the condition is met
-    adminLoggedIn().then((isLoggedIn) => {
+    userIsAdmin().then((isLoggedIn) => {
         if (isLoggedIn) {
             addShowingButton.style.display = 'inline-block';
             addShowingButton.addEventListener("click", () => {
@@ -222,4 +209,26 @@ document.addEventListener('DOMContentLoaded', populateAdminDropdown);
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
+}
+
+document.getElementById("admin-dashboard-btn").addEventListener("click", async function () {
+    const isAdmin = await userIsAdmin();
+    if (isAdmin) {
+        window.location.href = "admin_dashboard.html";
+    } else {
+        window.location.href = "Login.html";
+    }
+});
+
+async function userIsAdmin() {
+    try {
+        const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+            method: "GET",
+            credentials: "include" // Include credentials for session management
+        });
+        return response.ok;
+    } catch (error) {
+        console.error("Error checking admin session:", error);
+        return false;
+    }
 }
