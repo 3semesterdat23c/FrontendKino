@@ -46,6 +46,26 @@ function renderSeats(allSeats, bookedSeats, seatRows, seatsPerRow) {
     // Opdater statistikken i legend (eller andet passende område)
     document.getElementById('booking-statistics').textContent = `Booket: ${bookedPercentage}%`;
 
+    async function adminLoggedIn() {
+        try {
+            const response = await fetch("http://localhost:8080/admin/check-admin-presence", {
+                method: "GET",
+                credentials: "include" // Include credentials for session management
+            });
+            return response.ok;
+        } catch (error) {
+            console.error("Error checking admin session:", error);
+            return false;
+        }
+    }
+
+    adminLoggedIn().then((isLoggedIn) => {
+        if (isLoggedIn) {
+            document.getElementById('booking-statistics').textContent = `Booket: ${bookedPercentage}%`;
+            document.getElementById("div-booking-statistics").style.display = 'flex'
+        }
+    });
+
     // Loop over all rows and seats per row
     for (let rowIndex = 1; rowIndex <= seatRows; rowIndex++) {
         const rowContainer = document.createElement('div');
