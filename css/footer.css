@@ -6,7 +6,7 @@ html, body {
 }
 
 .container {
-    flex: 1; /* Fylder den resterende plads mellem header og footer */
+    flex: 1;
 }
 
 .footer {
@@ -24,6 +24,7 @@ html, body {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+
 }
 
 .footer-left,
@@ -36,6 +37,8 @@ html, body {
 .footer-right p {
     margin: 8px 0;
     font-size: 16px;
+
+    cursor: pointer;
 }
 
 .footer-content a {
