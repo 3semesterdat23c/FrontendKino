@@ -97,3 +97,14 @@ body {
 .legend-item .seat.selected {
     background-color: orange;
 }
+.legend-item p {
+    margin: 0;
+    font-weight: bold;
+    color: #ffcc00; /* Samme gule farve som resten af teksten */
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}

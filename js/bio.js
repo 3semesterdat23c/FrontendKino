@@ -38,6 +38,14 @@ function renderSeats(allSeats, bookedSeats, seatRows, seatsPerRow) {
     const container = document.querySelector('.container');
     container.innerHTML = ''; // Clear previous seats
 
+    // Beregn den totale antal sæder og bookede sæder
+    const totalSeats = allSeats.length;
+    const bookedSeatCount = bookedSeats.length;
+    const bookedPercentage = ((bookedSeatCount / totalSeats) * 100).toFixed(2); // Beregn procent og rund af til to decimaler
+
+    // Opdater statistikken i legend (eller andet passende område)
+    document.getElementById('booking-statistics').textContent = `Booket: ${bookedPercentage}%`;
+
     // Loop over all rows and seats per row
     for (let rowIndex = 1; rowIndex <= seatRows; rowIndex++) {
         const rowContainer = document.createElement('div');
@@ -85,6 +93,7 @@ function renderSeats(allSeats, bookedSeats, seatRows, seatsPerRow) {
         }
     });
 }
+
 
 
 // Function to handle seat selection
