@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Update the DOM with movie details
                     document.getElementById("movieTitle").textContent = movie.title || 'N/A';
                     document.getElementById("releaseYear").textContent = movie.year || 'N/A';
+                    document.getElementById("runTime").textContent = movie.runtime || 'N/A';
                     document.getElementById("moviePoster").src = movie.poster || 'default_poster.jpg';
 
                     if (movie.actors && Array.isArray(movie.actors)) {
@@ -52,8 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Updated fetchShowings function
+    // Updated fetchShowings function to format date, time, and theatre
+    // Updated fetchShowings function to format date, time, and theatre
     function fetchShowings(movieId) {
-        fetch(`http://localhost:8080/showing/showings/${movieId}`) // Adjusted endpoint to match your backend
+        fetch(`http://localhost:8080/showing/showings/${movieId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -69,11 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     data.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
                     data.forEach(showing => {
                         const listItem = document.createElement("li");
+
                         const dateTime = new Date(showing.dateTime);
                         const day = dateTime.getDate();
-                        const month = dateTime.getMonth() + 1 //Starter fra 0 så der tilføjes 1;
+                        const month = dateTime.getMonth() + 1;
                         const time = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                        listItem.textContent = `${day}/${month} - ${time}, Sal: ${showing.theatre.theatreId}`;
+
+                        listItem.innerHTML = `
+                        <span class="date"><span class="label">Dato:</span><span>${day}/${month}</span></span>
+                        <span class="time"><span class="label">Tid:</span><span>${time}</span></span>
+                        <span class="theatre">Sal: ${showing.theatre.theatreId}</span>
+                    `;
 
                         // Add click event to change the location
                         listItem.addEventListener('click', function() {
@@ -92,6 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 showingsList.innerHTML = "<li>Error fetching showings.</li>";
             });
     }
+
+
 
     // Modal handling for "Add New Showing"
     const modal = document.getElementById("showingModal");

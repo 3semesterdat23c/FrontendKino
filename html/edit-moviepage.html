@@ -27,42 +27,44 @@
     </div>
     <div class="modal-body">
         <form id="movie-form">
-            <label for="movie-title">Titel:</label>
+            <label class="modal-label" for="movie-title">Titel:</label>
             <input type="text" id="movie-title" name="title" required>
 
-            <label for="movie-release-year">Udgivelsesår:</label>
+            <label class="modal-label" for="movie-release-year">Udgivelsesår:</label>
             <input type="number" id="movie-release-year" name="releaseYear" required>
 
-            <label for="movie-genre">Genre:</label>
+            <label class="modal-label" for="movie-genre">Genre:</label>
             <input type="text" id="movie-genre" name="genre" required>
 
-             <label for="movie-genre">Runtime:</label>
+            <label class="modal-label" for="movie-runtime">Runtime:</label>
             <input type="text" id="movie-runtime" name="runtime" required>
 
-             <label for="movie-poster">Plakat:</label>
+            <label class="modal-label" for="movie-poster">Plakat:</label>
             <input type="text" id="movie-poster" name="moviePoster" required>
 
-             <label for="movie-Imdb-rating">ImdbRating:</label>
+            <label class="modal-label" for="movie-Imdb-rating">ImdbRating:</label>
             <input type="text" id="movie-Imdb-rating" name="imdbrating" required>
 
-            <label for="movie-Imdb-ID">ImdbID:</label>
+            <label class="modal-label" for="movie-Imdb-ID">ImdbID:</label>
             <input type="text" id="movie-Imdb-ID" name="imdbID" required>
 
-            <label for="movie-actors">Skuespillere:</label>
+            <label class="modal-label" for="movie-actors">Skuespillere:</label>
             <input type="text" id="movie-actors" name="actors" required>
 
-            <label for="movie-directors">Instruktører:</label>
+            <label class="modal-label" for="movie-directors">Instruktører:</label>
             <input type="text" id="movie-directors" name="directors" required>
 
-             <label for="movie-release-date">Udgivelsesdato:</label>
+            <label class="modal-label" for="movie-release-date">Udgivelsesdato:</label>
             <input type="text" id="movie-release-date" name="releaseDate" required>
 
         </form>
     </div>
     <div class="modal-footer">
-        <button id="save-button">Gem</button>
-        <button id="delete-movie-btn">Slet film</button>
-        <button id="cancel-button">Annuller</button>
+
+        <button id="save-button" class="button-group">Gem</button>
+        <button id="delete-movie-btn" class="button-group">Slet film</button>
+        <button id="cancel-button" class="button-group">Annuller</button>
+
     </div>
 </div>
 <div class="footer">
