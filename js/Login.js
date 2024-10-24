@@ -19,6 +19,9 @@ document.getElementById("login-form").addEventListener("submit", async function 
         });
 
         if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            localStorage.setItem("user", data.token);
             alert("Du er nu logget ind som admin");
             window.location.href = 'admin_dashboard.html'; // Redirect to the admin dashboard
         } else {
